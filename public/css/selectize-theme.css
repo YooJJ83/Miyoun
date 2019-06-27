@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+.selectize-control {
+    height:34px;
+}
+
+.selectize-control.single .selectize-input, .selectize-dropdown.single {
+    border-color: #c8c8c8;
+
+}
+
+.selectize-input {
+    background: #fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #959595;
+    padding: 0px 10px;
+    line-height: 32px;
+    height: 34px;
+    font-size:14px;
+    display: block;
+}
+
+
+.selectize-input.has-items {
+    color: #333333;
+}
+
+.selectize-input > input {
+    margin:0;
+    height:32px;
+    line-height:32px;
+    font-size:14px;
+    z-index: 1;
+}
+
+
+.selectize-control.single .selectize-input:after {
+    width:32px;
+    height:32px;
+    margin:0;
+    border:0;
+    top: 0;
+    right: 0;
+    background: url(../img/icons/icon-select.png) no-repeat;
+    background-position: 100% 0;
+    z-index: 2;
+}
+
+
+.selectize-control.single .selectize-input.dropdown-active {
+    border-color: #c62167;
+}
+.selectize-control.single .selectize-input.dropdown-active:after {
+    margin:0;
+    border:0;
+    background-position: 100% -32px;
+}
+
+.selectize-dropdown {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin:0;
+    border:1px solid #c8c8c8;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.selectize-dropdown .active {
+    background-color: #fafafa;
+}
+
+.selectize-dropdown [data-selectable], .selectize-dropdown .optgroup-header {
+    padding:8px;
+    font-size:14px;
+}
+
+/*plain-select*/
+
+.plain-select.selectize-control.single .selectize-input.input-active,
+.plain-select.selectize-control.single .selectize-input.input-active input {
+    cursor: pointer;
+}
+
+
+.plain-select.selectize-control.single .selectize-input:after {
+    width: 100%;
+}
+
+
+/*size-lg*/
+.selectize-lg .selectize-input {
+    height:40px;
+    line-height:38px;
+    font-size:16px;
+}
+
+.selectize-lg.selectize-control.single .selectize-input:after {
+    top:3px;
+}

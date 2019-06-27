@@ -1,0 +1,112 @@
+.about-content {
+    font-size: 0;
+    text-align: center;
+}
+
+.about-content-block {
+    width: 33%;
+    display: inline-block;
+    height: 320px;
+    vertical-align: top;
+    text-align: left;
+    margin: 30px 0;
+    background: url(../img/patterns/dot-h.png) 100% 0 repeat-y;
+}
+
+.about-content-block:last-child,
+.about-content-block:nth-child(3n) {
+    background: none;
+}
+
+.about-content-block .icon {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+
+.about-content-block p {
+    width: 280px;
+    white-space: nowrap;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+
+.information-block {
+    padding: 10px 0 0 30px;
+
+}
+
+.information-block.border-bottom {
+    background: url(../img/patterns/dot.png) 0 100% repeat-x;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.information-block .information-img {
+    display: block;
+    margin: 0 0 30px;
+}
+
+
+.information-block .information-img.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.app-info {
+    position: relative;
+    padding: 30px 0 30px 200px;
+    min-height: 160px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.app-info .app-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.program-item {
+
+}
+
+.program-item .icon {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.program-item h5 {
+    margin-bottom: 10px;
+}
+
+.program-item p {
+    margin-bottom: 10px;
+}
+.program-item .btn {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.program-item .btn i {
+    background: url(../img/icons/icon-download.png) 50% 50% no-repeat;
+    height: 100%;
+    display: block;
+    float: left;
+    width: 18px;
+    margin-right: 5px;
+}
+
+.app-link {
+    display: inline-block;
+    margin: 20px;
+}
+
+.app-link img {
+    display: block;
+    margin: 0 auto 10px auto;
+}

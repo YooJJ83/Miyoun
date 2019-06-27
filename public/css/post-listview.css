@@ -1,0 +1,160 @@
+
+.post-list.list-view ul {
+
+}
+.post-list.list-view ul li {
+    padding: 0;
+    margin-bottom:50px;
+}
+
+
+.post-list.list-view ul li:nth-child(4n) {
+    border-right:0;
+}
+.post-list.list-view .post-list-item {
+    position: relative;
+    margin:0 auto;
+}
+
+
+.post-list.list-view .post-list-item .post-list-item-header {
+    position: relative;
+    border-bottom:1px solid #d6d6d6;
+    margin-bottom:15px;
+    padding-bottom:4px;
+
+}
+
+.post-list.list-view .post-list-item .post-list-item-header .post-title {
+    font-size:20px;
+    margin-right:20px;
+    float: left;
+}
+
+.post-list.list-view .post-list-item .post-list-item-header .rating {
+    float: left;
+}
+
+.post-list.list-view .post-list-item .post-list-item-header .badges {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+}
+
+.post-list.list-view .post-list-item .post-list-item-body {
+    position: relative;
+    margin-left:10px;
+    margin-right:10px;
+    min-height:115px;
+    padding-left:220px;
+}
+
+.post-list.list-view .post-list-item .post-list-item-body .post-contents {
+    padding:4px 0;
+}
+.post-list.list-view .post-list-item .post-list-item-body .post-meta {
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+.post-list.list-view .post-list-item .post-list-item-body .post-meta span {
+    display: inline-block;
+    margin-right:12px;
+}
+
+.post-list.list-view .post-list-item .post-list-item-body .post-content {
+    font-size:16px;
+    color: #666;
+    line-height:24px;
+    letter-spacing:-0.05em;
+    margin-bottom:15px;
+    height: 82px;
+    overflow: hidden;
+}
+.post-list.list-view .post-list-item .post-list-item-body .post-tags {
+    line-height:1.4;
+    white-space:nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.post-list.list-view .post-list-item .post-list-item-body .post-tags a {
+
+    color: #999;
+    margin-right:10px;
+}
+
+.post-list.list-view .post-list-item .post-list-item-body .post-tags a:hover {
+    color: #333;
+}
+.post-list.list-view .post-list-item .post-tb {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:204px;
+    height: 115px;
+    overflow:  hidden;
+}
+
+/*20180206접근성테스트*/
+.post-list.list-view .post-list-item .post-tb a {
+    display: block;
+}
+/*//20180206접근성테스트*/
+
+.post-list.list-view .post-list-item .post-tb img {
+    display: block;
+    width:100%;
+}
+
+.post-list.list-view .post-list-item .post-tb .over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    display: block;
+    opacity:0;
+    visibility: hidden;
+}
+
+
+.post-list.list-view .post-list-item .post-tb .over .label {
+    display: block;
+    border:1px solid #fff;
+    color: #fff;
+    position: absolute;
+    padding:10px 15px;
+    top: 50%;
+    left:50%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+/*.post-list.list-view .post-list-item:hover .post-tb .over {*/
+    /*opacity:1;*/
+    /*visibility: visible;*/
+/*}*/
+
+.post-list.list-view .post-list-item .post-tb .badges {
+    position: absolute;
+    right: 3px;
+    left: 3px;
+    top: 3px;
+}
+
+.post-list .loadmore {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.post-list .loadmore .btn {
+    width:190px;
+}

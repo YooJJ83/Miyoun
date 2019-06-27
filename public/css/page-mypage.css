@@ -1,0 +1,951 @@
+.mypage-basic-info {
+    padding:70px 0 40px;
+}
+
+.mypage-basic-info .user-profile {
+    padding:0 10px;
+    width: 390px;
+    position: relative;
+    min-height: 110px;
+}
+.user-profile-pic {
+    position: relative;
+    width: 110px;
+    height:110px;
+}
+.user-profile-pic img {
+    display: block;
+    width: 110px;
+    height:110px;
+    border:5px solid #d5d5d5;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.user-profile-pic .level {
+    position: absolute;
+    left: 0;
+    top:-6px;
+    background-color: #fff;
+    display: block;
+
+    width: 40px;
+    height: 40px;
+    border:5px solid #d5d5d5;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.mypage-basic-info .user-profile .user-profile-pic {
+    float: left;
+    margin-right:20px;
+}
+
+.mypage-basic-info .user-profile .user-profile-info {
+    padding-top:20px;
+}
+
+.mypage-basic-info .user-profile .user-profile-info .user-name {
+    font-size:28px;
+}
+
+
+.mypage-basic-info .user-profile .user-profile-info .btn {
+    vertical-align: top;
+}
+.mypage-basic-info .user-profile .user-profile-info hr {
+    margin: 8px auto;
+}
+
+.mypage-basic-info .user-profile .user-profile-info .user-meta {
+    font-size: 18px;
+}
+
+.mypage-basic-info .user-learning-stat {
+    padding:0 10px;
+    width: 520px;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item {
+    width: 25%;
+    float: left;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item dt {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item dt span {
+    display: inline-block;
+    position: relative;
+    color: #666666;
+    line-height:20px;
+}
+
+
+.mypage-basic-info .user-learning-stat .stat-item dt span:before {
+    content:'';
+    background:50% 50% no-repeat;
+    display: inline-block;
+    margin-right:4px;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+
+.mypage-basic-info .user-learning-stat .stat-item.stat1 dt span:before {
+    background-image: url(../img/icons/icon-stat1.png);
+    width: 18px;
+    height: 18px;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item.stat2 dt span:before {
+    background-image: url(../img/icons/icon-stat2.png);
+    width: 17px;
+    height: 15px;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item.stat3 dt span:before {
+    background-image: url(../img/icons/icon-stat3.png);
+    width: 14px;
+    height: 18px;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item.stat4 dt span:before {
+    background-image: url(../img/icons/icon-stat4.png);
+    width: 17px;
+    height: 17px;
+}
+
+
+.mypage-basic-info .user-learning-stat .stat-item dd {
+    border-right:1px solid #d6d6d6;
+    text-align: center;
+    padding:10px 0 20px 0;
+    font-size: 16px;
+    color: #999999;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item:first-child dd {
+    border-left:1px solid #d6d6d6;
+}
+
+.mypage-basic-info .user-learning-stat .stat-item dd .value {
+    font-size:30px;
+}
+
+
+.my-progress-rate {
+    padding:0px 40px;
+    font-size: 16px;
+}
+
+.my-progress-rate dl {
+    position: relative;
+    padding-left:110px;
+    line-height:48px;
+}
+
+.my-progress-rate dl dt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:100px;
+    text-align: right;
+}
+
+
+.my-progress-rate dl dd {
+    position: relative;
+    text-align: right;
+}
+
+.my-progress-rate dl dd .amount {
+    display: inline-block;
+    width:60px;
+    text-align: left;
+}
+
+.my-progress-rate dl dd .progress-bar {
+    position: absolute;
+    top:50%;
+    left: 0;
+    right:70px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
+
+/*lecture-progress-item*/
+.lecture-progress-item {
+
+}
+
+.lecture-progress-item-header {
+    position: relative;
+    padding-right:40px;
+    padding-top: 13px;
+    padding-bottom: 15px;
+}
+
+.lecture-progress-item-header .lecture-info {
+    position: relative;
+    line-height:18px;
+}
+
+.lecture-progress-item-header .lecture-info .lecture-title {
+    font-size: 16px;
+    position: relative;
+    text-indent:18px;
+}
+
+.lecture-progress-item-header .lecture-info .lecture-title:before {
+    content:'•';
+    position: absolute;
+    top: -1px;
+    left: -18px;
+    color: #7f7f7f;
+    font-size: 20px;
+}
+
+.lecture-progress-item-header .lecture-info .lecture-per {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #999999;
+    font-size:14px;
+}
+
+.lecture-progress-item-header .lecture-btns {
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+
+.lecture-progress-item-header .lecture-btns a {
+    float: left;
+    margin-left:10px;
+    display: block;
+}
+
+.lecture-progress-item-header .lecture-btns .btn-toggle {
+    background: url(../img/icons/icon-arrow-up.png) 50% 50% no-repeat;
+    width:30px;
+    height: 32px;
+    text-indent:-999em;
+    overflow: hidden;
+}
+
+.lecture-progress-item.inactive .lecture-progress-item-header .lecture-btns .btn-toggle {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+
+.lecture-progress-item-header .progress-bar {
+    position: absolute;
+    left: 17px;
+    right: 0;
+    bottom:0px;
+}
+
+.lecture-progress-item-body {
+    padding:20px 0 20px 20px;
+    position: relative;
+}
+
+.lecture-progress-item-body .btns {
+    margin-bottom:20px;
+}
+
+.lecture-progress-item-body .btns .btn {
+    margin-left:5px;
+}
+
+.lecture-progress-item-body .lecture-list {
+
+margin-left: 20px;
+}
+
+.lecture-progress-item-body .lecture-list li {
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    min-height:40px;
+}
+
+.lecture-progress-item-body .lecture-list li .lecture-title {
+    font-size: 15px;
+    position:relative;
+
+}
+
+.lecture-progress-item-body .lecture-list li .lecture-title {
+	
+}
+
+.lecture-progress-item-body .lecture-list li .progress-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 25px;
+}
+
+.lecture-progress-item-body .lecture-list li .checked {
+    position: absolute;
+    top: 0px;
+    left: -22px;
+    display: block;
+    background: url(../img/icons/icon-checked.png) 50% 50% no-repeat;
+    width: 18px;
+    height:18px;
+}
+
+.lecture-list li a.icon-download-1 {
+    background: url(../img/icons/icon-download-1.png) 0 0 no-repeat; 
+    width: 40px; 
+    height: 40px;
+    white-space: nowrap;
+    text-indent: 999px;    
+    overflow: hidden;
+    float: right;
+    position: relative;
+    top: -12px;
+    right: 2px;
+    margin-left: 5px; 
+}
+
+.lecture-list li a.icon-download-2 {
+    background: url(../img/icons/icon-download-2.png) 0 0 no-repeat; 
+    width: 40px; 
+    height: 40px;
+    white-space: nowrap;
+    text-indent: 999px;     
+    overflow: hidden;
+    float: right;
+    position: relative;
+    top: -12px;
+    right: 2px; 
+    margin-left: 5px; 
+}
+
+.lecture-list li a.icon-download-1:hover,
+.lecture-list li a.icon-download-2:hover {
+    background-position: 0 -40px;
+}
+
+.lecture-list a.lecture-view {
+    padding: 8px 8px;
+    float: right;
+    margin-top: -10px;
+    margin-right: 10px;
+}
+
+.lecture-list li span.con-waiting {
+    float: right;
+    position: relative;
+    right: 5px;
+    color: #666666;
+    font-size: 14px;
+    height: 40px;
+}
+
+.lecture-list .option-box {
+    position: absolute;
+    bottom: 50px;
+    right: -20px;
+    width: 350px;
+    padding: 10px 10px 10px 20px;
+    border:1px solid #44bfde;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #fff;
+    z-index: 99999;
+    box-sizing: border-box;
+    display: none;
+}
+
+.lecture-list .option-box a.icon-option-close {
+    background-image: url(../img/icons/icon-option-close.png);
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    display: block; 
+    float: right;
+    position: absolute;
+    margin: 10px;
+    top:0;
+    right: 0;
+}
+
+.lecture-list .option-box ul {
+    margin-top: 25px; 
+    width: 320px;    
+}
+
+.lecture-list .option-box li {
+    position: relative;
+    padding: 16px 0;
+    border-bottom: 1px dashed #cccccc;
+    color: #666666;
+}
+
+.lecture-list .option-box li a.icon-download-1 {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.lecture-list .option-box li a.icon-download-2 {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+
+/*my-lecture-graphs*/
+.my-lecture-graphs {
+
+}
+.my-lecture-graphs .ranges {
+    margin-bottom: 30px;
+}
+.my-lecture-graphs .ranges .btn {
+    margin: 0 2px;
+}
+
+
+.my-lecture-graphs .ranges .btn.active {
+    background-color: #d1286f;
+    border-color: #d1286f;
+    color: #fff;
+}
+
+
+.my-lecture-graphs .graphs {
+    position: relative;
+}
+
+.my-lectures-graphs .graphs .slides {
+    position: relative;
+}
+
+
+.graph-item {
+    position: relative;
+    padding:0 40px;
+}
+
+.graph-item .graph-area {
+    width:520px;
+    height:160px;
+}
+
+.graph-item .daily-info {
+    position: absolute;
+    right:40px;
+    top:0;
+}
+
+.graph-item .daily-info dl {
+    margin-left:1px;
+    height:120px;
+    width: 66px;
+    position: relative;
+    background:50% 50% no-repeat;
+    float: left;
+}
+
+.graph-item .daily-info dl.morning {
+    background-image: url(../img/mypage/morning.png);
+}
+.graph-item .daily-info dl.noon {
+    background-image: url(../img/mypage/noon.png);
+}
+.graph-item .daily-info dl.evening {
+    background-image: url(../img/mypage/evening.png);
+}
+.graph-item .daily-info dl.night {
+    background-image: url(../img/mypage/night.png);
+}
+
+
+.graph-item .daily-info dl dt {
+    text-align: center;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:-28px;
+}
+
+.graph-item .daily-info dl dd {
+    text-align: center;
+    position: absolute;
+    color: #fff;
+    left: 0;
+    right: 0;
+    font-size: 18px;
+    top:80px;
+}
+
+.my-lecture-graphs .graphs .btn-prev,
+.my-lecture-graphs .graphs .btn-next {
+    padding:0;
+    margin: 0;
+    width: 12px;
+    height:23px;
+    cursor: pointer;
+    background:50% 50% no-repeat;
+    position: absolute;
+    top:25px;
+    text-indent:-999em;
+    overflow: hidden;
+    border:0;
+}
+
+.my-lecture-graphs .graphs .btn-prev {
+    left: 0;
+    background-image: url(../img/icons/icon-prev.png);
+}
+
+.my-lecture-graphs .graphs .btn-next {
+    right: 0;
+    background-image: url(../img/icons/icon-next.png);
+}
+
+
+/*setting-prophy*/
+.level-list {
+
+}
+.level-list li {
+    width: 10%;
+    float: left;
+}
+.level-item {
+    width:66px;
+    height:66px;
+    display: block;
+    position: relative;
+    margin:0 auto;
+}
+
+.level-item img {
+    display: block;
+    border:5px solid #d5d5d5;
+    width: 100%;
+    height:auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    margin-bottom: 15px;
+}
+
+.level-item img.on {
+    opacity:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.level-item.active img.on {
+    opacity:1;
+}
+
+.level-item .name {
+    text-align: center;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+.trophy-list {
+    margin:-20px 0;
+}
+
+.trophy-list li {
+    width:16.6666666%;
+    float: left;
+    margin:20px 0;
+}
+
+.trophy-item {
+    width: 80px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.trophy-item .icon {
+    width:80px;
+    height:80px;
+    margin-bottom:15px;
+}
+
+.trophy-item .icon img {
+    display: block;
+    border:5px solid #d5d5d5;
+    width: 100%;
+    height:auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
+.trophy-item .icon img.on {
+    opacity:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.trophy-item.active .icon img.on {
+    opacity:1;
+}
+
+.trophy-item .name {
+    text-align: center;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+.trophy-item .radiobox {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding:0;
+    display: none;
+}
+
+.trophy-item.active .radiobox {
+    display: block;
+}
+
+.trophy-item .radiobox input {
+    margin: 0 auto !important;
+    position: static !important;
+}
+
+
+
+.avatar-list {
+    margin:-20px 0;
+}
+
+.avatar-list li {
+    width:20%;
+    float: left;
+    margin:20px 0;
+}
+
+.avatar-item {
+    width: 80px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.avatar-item .icon {
+    width:80px;
+    height:80px;
+    margin-bottom:15px;
+}
+
+.avatar-item .icon img {
+    display: block;
+    border:5px solid #d5d5d5;
+    width: 100%;
+    height:auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
+
+
+.avatar-item .radiobox {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding:0;
+    display: none;
+}
+
+.avatar-item.active .radiobox {
+    display: block;
+}
+
+.avatar-item .radiobox input {
+    margin: 0 auto !important;
+    position: static !important;
+}
+
+
+.profile-pic-editor {
+    margin:0 auto;
+    width:166px;
+    height:166px;
+    position: relative;
+}
+
+
+.profile-pic-editor .profile-pic {
+    display: block;
+    border:5px solid #d5d5d5;
+    width: 100%;
+    height:auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
+.profile-pic-editor .btn-update {
+    position: absolute;
+    left:100%;
+    top:50%;
+    width:80px;
+    -webkit-transform: translate(20px, -50%);
+    -moz-transform: translate(20px, -50%);
+    -ms-transform: translate(20px, -50%);
+    -o-transform: translate(20px, -50%);
+    transform: translate(20px, -50%);
+}
+
+.profile-pic-editor .btn-delete {
+    padding:0;
+    margin: 0;
+    width:40px;
+    height:40px;
+    border:3px solid #d5d5d5;
+    background: #fff;
+    text-align: center;
+    line-height:34px;
+    font-size: 30px;
+    font-weight:700;
+    color: #646464;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right:2px;
+}
+
+.profile-pic-editor label,
+.profile-pic-editor input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: -99em;
+    opacity:0;
+    width: 0;
+    height:0;
+}
+
+.profile-pic-resize .editor {
+    width:300px;
+    height:300px;
+    margin:0 auto;
+}
+    /*modal*/
+.modal .secession-form .top-area {
+    min-height:440px;
+}
+
+/*purchase-list*/
+.purchase-list {
+    padding:20px 0;
+}
+
+.purchase-list-item {
+    border-bottom:1px solid #d6d6d6;
+    margin-bottom:35px;
+}
+
+.purchase-list-item .order-title {
+    padding:0 20px 15px;
+    border-bottom:1px solid #d6d6d6;
+}
+
+.purchase-list-item .order-items {
+    width: 100%;
+    margin:10px 20px;
+}
+
+.purchase-list-item .order-items caption {
+    display: none;
+}
+
+.purchase-list-item .order-items td {
+    padding:10px;
+    vertical-align: middle;
+    line-height:1.5;
+    font-size:16px;
+}
+.purchase-list-item .order-items td.tb {
+    width:116px;
+}
+.purchase-list-item .order-items td.tb img {
+    width:116px;
+    display: block;
+    background-color:#ccc;
+}
+
+.purchase-list-item .order-items td.program-meta {
+}
+
+.purchase-list-item .order-items td.status {
+    width:120px;
+}
+
+.purchase-list-item .order-items td.action {
+    width:120px;
+}
+
+#itemsList td.tb img {
+	width:116px;
+	display:block;
+	height: 66px;
+	/* height:auto; */
+	background-color:#ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#itemsList td.tb img.vertical {
+    width:86px;
+    display:block;
+    height: 116px;
+    /* height:auto; */
+    background-color:#ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.my-lecture-trophy {
+    margin-bottom: 30px;
+    position:relative;
+}
+
+.my-lecture-trophy-box {
+    border: 1px solid #d6d6d6;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    height: 150px;
+    position:relative;
+}
+
+.my-lecture-trophy-box.my-level {
+    float: left;
+
+    width: 166px;
+
+}
+
+
+.my-lecture-trophy-box h4 {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.my-lecture-trophy-box.my-trophy {
+    float: right;
+    position:absolute;
+    width: 710px;
+    width:auto;
+    top:0;
+    right:0;
+    left:190px;
+}
+
+.my-lecture-trophy-box .level-item,
+.my-lecture-trophy-box .trophy-item {
+    width: 80px;
+    margin: 0 auto;
+}
+
+.my-lecture-trophy-box .level-item img,
+.my-lecture-trophy-box .trophy-item .icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 8px;
+}
+
+.my-lecture-trophy-box .level-item .name,
+.my-lecture-trophy-box .trophy-item .name {
+    display: block;
+    font-size: 14px;
+    text-align: center;
+}
+
+.my-lecture-trophy-box .slick-prev,
+.my-lecture-trophy-box .slick-next,
+.my-lecture-trophy-box .slick-prev:hover,
+.my-lecture-trophy-box .slick-next:hover {
+    width: 12px;
+    height: 23px;
+    background:transparent 50% 50% no-repeat !important;
+    opacity: 1 !important;
+    text-indent: -999em;
+    overflow: hidden;
+    top: 32px;
+}
+
+
+.my-lecture-trophy-box .slick-prev,
+.my-lecture-trophy-box .slick-prev:hover,
+.my-lecture-trophy-box .slick-prev:focus {
+    background-image: url(../img/icons/icon-prev.png) !important;
+    left: -15px;
+} 
+
+.my-lecture-trophy-box .slick-next,
+.my-lecture-trophy-box .slick-next:hover,
+.my-lecture-trophy-box .slick-next:focus {
+    background-image: url(../img/icons/icon-next.png) !important;
+    right: -15px;
+}
+
+
+.my-lecture-trophy-box .no-trophy {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:200px;
+	text-align:center;
+	line-height:1.5;
+	margin-left:-100px;
+	margin-top:-10px;
+} 

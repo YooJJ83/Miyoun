@@ -1,0 +1,95 @@
+.my-interest {
+
+}
+
+.my-interest .table.table-lg th, 
+.my-interest .table.table-lg td {
+    padding: 10px 8px;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+.my-interest-selection-info a {
+}
+.my-interest-selection-info a:hover {
+    color: #009ec4;
+}
+.my-interest-selection-info {
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+
+
+.my-interest-selection {
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+
+.selected-interest-item {
+    display: inline-block;
+    margin:5px 10px;
+    border:1px solid #009ec4;
+    position: relative;
+    padding: 9px 40px 9px 20px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    font-size:16px;
+    color: #009ec4;
+}
+
+
+.selected-interest-item-text-only {
+	padding-right:15px;
+	padding-left:15px;
+	margin-left:0;
+	margin-right:3px;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+.selected-interest-item .btn-delete {
+    /* color: #fff;
+    background: #44bfde; */
+    background-image: url(../img/icons/icon_interest_close.png);
+    width:20px;
+    height:20px;
+    /* text-align: center; */
+    display: block;
+    /* line-height:20px; */
+    position: absolute;
+    top:50%;
+    right:10px;
+    margin-top: -10px;
+    /* -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%; */
+}
+
+.interest-item-group {
+    margin: -10px -5px;
+}
+
+.interest-item {
+    display: inline-block;
+    margin:5px;
+    border:1px solid transparent;
+    position: relative;
+    padding: 9px 15px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    font-size:16px;
+    color: #333333;
+
+}
+
+.interest-item:hover,
+.interest-item.active {
+    border-color: #c8c8c8;
+    background: #f5f5f5;
+}

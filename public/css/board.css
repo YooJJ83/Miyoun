@@ -1,0 +1,236 @@
+.board-list {
+
+}
+
+.board-list .search-form {
+    position: relative;
+    padding-left:160px;
+    padding-right:100px;
+}
+
+.board-list .search-form label {
+    width: 0;
+    height:0;
+    font-size:0;
+    position: absolute;
+    opacity:0;
+    visibility: hidden;
+    left:-999em;
+}
+.board-list .search-form .category {
+    width: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.board-list .search-form button[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+}
+
+
+.lect-search label {
+    width: 0;
+    height:0;
+    font-size:0;
+    position: absolute;
+    opacity:0;
+    visibility: hidden;
+    left:-999em;
+}
+.lect-search select {
+	width: 150px;
+	margin-right: 10px;
+	
+	-webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #c8c8c8;
+    color: #333333;
+    padding: 4px 10px;
+    height: 34px;
+    background: #fff;
+    
+	padding-right: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(../img/icons/icon-select.png);
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+}
+    
+
+
+.board-list .table th,
+.board-list .table td {
+    padding: 20px 10px;
+}
+.board-list .table td .btn-download {
+    margin:-6px 0 -6px 15px;
+    vertical-align: middle;
+    height:38px;
+}
+
+
+.board-list .multi-search{
+	width: 595px; 
+	padding-left: 160px;
+}
+
+.board-list .table td .attachment .filename {
+    display: inline-block;
+    width: 100px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+
+.board-view .table td {
+    padding:20px 10px;
+}
+
+
+.board-view .table td.board-content {
+    border-bottom:0;
+    word-break:break-all;
+}
+.board-view .table td.board-content p {
+    line-height:1.4;
+}
+
+
+.board-view div.board-content {
+    padding:15px;
+    line-height:1.4;
+    word-break:break-all;
+}
+
+.board-view .table td.attachment {
+    background: #f7fafd;
+}
+
+
+
+.board-write td .category {
+    width: 200px;
+}
+
+.faq-list {
+    border-top: 1px solid #d6d6d6;
+}
+
+.faq-list .faq-item {
+    border-bottom:1px solid #d6d6d6;
+}
+
+.faq-item .faq-q {
+    position: relative;
+    padding:20px 80px 20px 52px;
+    font-size:16px;
+    line-height:1.4;
+    cursor: pointer;
+}
+
+.faq-item .faq-q:before {
+    content:'Q';
+    font-weight:900;
+    font-size: 18px;
+    display: block;
+    left:20px;
+    top:17px;
+    position: absolute;
+}
+
+.faq-item .faq-q:after {
+    background:url(../img/icons/icon-list-open.png) 50% 50% no-repeat;
+    position: absolute;
+    content:'';
+    width: 40px;
+    height:40px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+
+.faq-item.active .faq-q:after {
+    background-image: url(../img/icons/icon-list-close.png);
+}
+
+.faq-item .faq-a {
+    border-top:1px solid #d6d6d6;
+    position: relative;
+    padding:20px 20px 20px 52px;
+    font-size:16px;
+    line-height:1.4;
+}
+
+
+.faq-item .faq-a:before {
+    content:'A';
+    font-weight:900;
+    font-size: 18px;
+    display: block;
+    left:20px;
+    top:17px;
+    position: absolute;
+}
+
+
+.board-content-q {
+    position: relative;
+    padding:20px 20px 20px 52px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.board-content-q:before {
+    content:'Q';
+    font-weight:900;
+    font-size: 18px;
+    display: block;
+    left:20px;
+    top:18px;
+    position: absolute;
+}
+
+.board-content-a {
+    border-top:1px dashed #d6d6d6;
+    position: relative;
+    padding:20px 20px 20px 52px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.board-content-a:before {
+    content:'A';
+    font-weight:900;
+    font-size: 18px;
+    display: block;
+    left:20px;
+    top:18px;
+    position: absolute;
+}
+
+
+
+.faq-categories {
+	margin-bottom:20px;
+}
+
+.faq-categories li {
+	float:left;
+	width:14.28571428571429%;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:5px;
+}
+
+
+.faq-categories li a {
+	display:block;
+	width:100%;
+}

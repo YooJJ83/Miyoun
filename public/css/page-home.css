@@ -1,0 +1,328 @@
+@charset "UTF-8";
+
+.home-banner {
+    background: #69cce5;
+}
+
+.home-banner .home-banner-item {
+    position: relative;
+}
+
+.home-banner .home-banner-item a,
+.home-banner .home-banner-item img {
+    display: block;
+}
+
+.home-banner .home-banner-item img {
+    width:100%;
+    height:auto;
+}
+
+.home-banner .home-banner-item .btn-close {
+    display: block;
+    text-indent:-999em;
+    overflow: hidden;
+    width:14px;
+    height:14px;
+    position: absolute;
+    right:10px;
+    top:50%;
+    margin-top:-7px;
+    background:url(../img/icons/icon-x-sm.png) no-repeat;
+}
+
+.home-banner .home-banner-item .btn-close:hover {
+    background-position: 0 -14px;
+}
+
+/*home-slider*/
+.home-slider {
+
+}
+
+.home-slider .slide {
+    height:450px;
+    display: block;
+    background:#ddd 50% 50% no-repeat;
+}
+
+.home-slider .slide .container {
+    height:100%;
+}
+
+.home-slider .slide .slide-desc {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.home-slider .slide .slide-desc .slide-meta {
+    font-size:20px;
+    margin-bottom:26px;
+}
+
+.home-slider .slide .slide-desc .slide-title {
+    font-size:44px;
+    margin-bottom:20px;
+}
+
+.home-slider .slide .slide-desc .slide-slogan {
+    font-size:20px;
+    margin-bottom:50px;
+}
+
+.home-slider .slide .slide-desc .slide-link {
+    color: #fff;
+    font-size: 18px;
+}
+
+.home-slider .slide .slide-desc .slide-link svg {
+    margin-left:10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.home-slider .slide .slide-desc .slide-link:hover {
+    color: #ccc;
+}
+
+.home-slider .slide .slide-desc .slide-link:hover svg path {
+    stroke:#ccc;
+}
+
+.home-slider .slick-dotted.slick-slider {
+    padding-bottom:0;
+    margin-bottom:0;
+}
+
+.home-slider .slick-dots {
+    bottom:30px;
+}
+
+.home-slider .slick-dots li {
+    margin:0 6px;
+    width: 14px;
+    height:14px;
+}
+
+.home-slider .slick-dots li button {
+    width:14px;
+    height:14px;
+    background:#fff;
+    opacity:.6;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    text-indent:-999em;
+}
+
+.home-slider .slick-dots li button:before {
+    content:none;
+}
+
+.home-slider .slick-dots li.slick-active button {
+    opacity:1;
+}
+
+.home-first-section {
+    padding-bottom:0;
+}
+
+.home-first-section .post-list .loadmore {
+    /* padding-top: 45px; */
+}
+.home-second-section {
+    margin-top:-20px;
+}
+
+
+.category-list {
+    margin-bottom:-30px;
+}
+
+.category-list ul {
+    margin:0 -30px;
+}
+
+.category-list li {
+    width:20%;
+    float: left;
+    margin-bottom:32px;
+}
+
+.category-list-item {
+    margin: 0 auto;
+    width: 150px;
+    height:100px;
+    border:1px solid #e6e6e6;
+    background: #fff;
+    overflow: hidden;
+}
+
+/*20180206접근성테스트*/ 
+.category-list-item a,
+.cs-list-item a {
+    display: block;
+    height: 100%;
+    padding: 6px 0;
+    box-sizing: border-box;
+}
+/*//20180206접근성테스트*/ 
+
+.category-list-item i {
+    display: block;
+    margin:0 auto;
+    width:60px;
+    height:60px;
+    background:no-repeat;
+}
+
+.category-list-item a:hover i,
+.category-list-item a:focus i {
+    background-position: 0 -60px;
+}
+
+.category-list-item i.cat1 {
+    background-image: url(../img/icons/icon-cat-1.png);
+}
+.category-list-item i.cat2 {
+    background-image: url(../img/icons/icon-cat-2.png);
+}
+.category-list-item i.cat3 {
+    background-image: url(../img/icons/icon-cat-3.png);
+}
+.category-list-item i.cat4 {
+    background-image: url(../img/icons/icon-cat-4.png);
+}
+.category-list-item i.cat5 {
+    background-image: url(../img/icons/icon-cat-5.png);
+}
+.category-list-item i.cat6 {
+    background-image: url(../img/icons/icon-cat-6.png);
+}
+.category-list-item i.cat7 {
+    background-image: url(../img/icons/icon-cat-7.png);
+}
+.category-list-item i.cat8 {
+    background-image: url(../img/icons/icon-cat-8.png);
+}
+.category-list-item i.cat9 {
+    background-image: url(../img/icons/icon-cat-9.png);
+}
+.category-list-item i.cat10 {
+    background-image: url(../img/icons/icon-cat-10.png);
+}
+.category-list-item .cat-title {
+    font-size:20px;
+    text-align: center;
+    color: #666666;
+    font-weight:700;
+}
+
+.category-list-item a:hover .cat-title,
+.category-list-item a:focus .cat-title {
+    color: #1eaadf;
+}
+
+
+
+
+.cs-list {
+    margin-bottom:-30px;
+}
+
+.cs-list ul {
+    margin:0 -8px;
+}
+
+.cs-list li {
+    width:33.333333333333333333333%;
+    float: left;
+    margin-bottom:30px;
+    padding:0 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cs-list-item {
+    margin: 0 auto;
+    height:90px;
+    border:1px solid #e6e6e6;
+    background: #fff;
+    overflow: hidden;
+}
+
+.cs-list-item i {
+    display: block;
+    margin:0 auto 2px;
+    width:50px;
+    height:50px;
+    background:no-repeat;
+}
+
+
+.cs-list-item a:hover i,
+.cs-list-item a:focus i{
+    background-position: 0 -50px;
+}
+
+.cs-list-item i.cs1 {
+    background-image: url(../img/icons/icon-cs-1.png);
+}
+.cs-list-item i.cs2 {
+    background-image: url(../img/icons/icon-cs-2.png);
+}
+.cs-list-item i.cs3 {
+    background-image: url(../img/icons/icon-cs-3.png);
+}
+.cs-list-item i.cs4 {
+    background-image: url(../img/icons/icon-cs-4.png);
+}
+.cs-list-item i.cs5 {
+    background-image: url(../img/icons/icon-cs-5.png);
+}
+.cs-list-item i.cs6 {
+    background-image: url(../img/icons/icon-cs-6.png);
+}
+.cs-list-item i.cs7 {
+    background-image: url(../img/icons/icon-cs-7.png);
+}
+.cs-list-item i.cs8 {
+    background-image: url(../img/icons/icon-cs-8.png);
+}
+
+.cs-list-item .cs-title {
+    font-size:16px;
+    text-align: center;
+    color: #666666;
+    font-weight:700;
+}
+
+.cs-list-item a:hover .cs-title,
+.cs-list-item a:focus .cs-title {
+    color: #1eaadf;
+}
+
+.notice-list {
+
+}
+
+.notice-item {
+    position: relative;
+    padding-right:80px;
+    line-height:16px;
+}
+
+.notice-item .date {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    display: block;
+}

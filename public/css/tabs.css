@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+.tabs {
+
+}
+
+.tabs .tab-menu {
+    border-bottom: 2px solid #009ec4;
+    margin-bottom:60px;
+    padding: 0 0px;
+}
+
+.tabs .tab-menu ul {
+
+}
+
+.tabs .tab-menu li {
+    float: left;
+    height: 47px;
+}
+
+
+
+.tabs .tab-menu.tab2 li {
+    width:50%;
+}
+
+.tabs .tab-menu.tab3 li {
+    width:33.33333333%;
+}
+
+.tabs .tab-menu.tab4 li {
+    width:25%;
+}
+
+.tabs .tab-menu.tab5 li {
+    width:20%;
+}
+
+.tabs .tab-menu.tab6 li {
+    width:16.66666666666667%;
+}
+
+
+.tabs .tab-menu li a {
+    display: block;
+    height:47px;
+    line-height:45px;
+    font-size:17px;
+    padding:0 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #c8c8c8;
+    border-bottom:0;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    margin-left:-1px;
+    background: #fafafa;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.tabs .tab-menu li.active a {
+    height: 49px;
+    z-index: 2;
+    background:#fff;
+    color: #009ec4;
+    font-weight:bold;
+    border: 2px solid #009ec4;
+    border-bottom: 0;
+    line-height: 43px;
+}
+
+
+.tabs .tab-menu.tab-menu-type-2 {
+    padding: 0;
+    border-bottom:2px solid #009ec4;
+    height:54px;
+    margin-bottom: 40px;
+}
+
+
+
+.tabs .tab-menu.tab-menu-type-2 li a {
+    display: block;
+    height:54px;
+    line-height:54px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid #d5d5d5;
+    background: #fafafa;
+    border-bottom:0;
+    text-align: center;
+    font-size:16px;
+    position: relative;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+
+}
+
+.tabs .tab-menu.tab-menu-type-2 li.active a {
+    border-color: #009ec4;
+    border-width:2px;
+    color: #009ec4;
+    background: #fff;
+    height:56px;
+}
+
+
+.tab-contents {
+    padding:0 10px;
+}
+
+.tab-contents .tab-content {
+    display: none;
+}
+
+.tab-contents .tab-content.active {
+    display: block;
+} 

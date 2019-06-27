@@ -1,0 +1,14 @@
+.join-titles {
+    letter-spacing:-0.1em;
+    padding:40px;
+}
+.join-titles .join-title {
+    font-size:84px;
+    color: #009ec4;
+
+    background: -moz-linear-gradient(top, #6ac7e0 0%, #6ac7e0 50%, #009ec4 50%, #009ec4 100%);
+    background: -webkit-linear-gradient(top, #6ac7e0 0%,#6ac7e0 50%,#009ec4 50%,#009ec4 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}

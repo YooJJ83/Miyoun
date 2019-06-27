@@ -1,0 +1,19 @@
+.rating {
+    font-size:0;
+    line-height:16px;
+}
+.rating .star {
+    width:18px;
+    height:16px;
+    background: url(../img/icons/icon-star.png) no-repeat;
+    display: inline-block;
+    margin-right:2px;
+}
+
+.rating .star:last-child {
+    margin-right:0;
+}
+
+.rating .star.full {
+    background-image: url(../img/icons/icon-star-full.png);
+}

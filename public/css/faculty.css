@@ -1,0 +1,28 @@
+.faculty-item {
+    position: relative;
+    min-height:110px;
+
+}
+
+.faculty-item .profile-pic {
+    margin-right:20px;
+    float: left;
+}
+
+.faculty-item .profile-pic img {
+    display: block;
+    width: 110px;
+    height:110px;
+    border:5px solid #d5d5d5;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
+
+.faculty-item .profile-info {
+    padding:25px 0;
+}

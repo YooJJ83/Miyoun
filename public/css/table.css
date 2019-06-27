@@ -1,0 +1,101 @@
+.table-container {
+    border-top:2px solid #009ec4;
+}
+
+.table {
+    width:100%;
+}
+
+.table caption {
+    height: 0;
+    overflow: hidden;
+}
+
+.table .bg-grey {
+    background: #f6f6f6;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    border-bottom:1px solid #dcdcdc;
+    padding:10px 5px;
+    vertical-align: middle;
+    line-height:1.2;
+}
+
+.table.table-compact th,
+.table.table-compact td {
+    padding: 10px 12px;
+}
+
+.table td p {
+    line-height:1.5;
+}
+
+.table td .btn.btn-sm {
+    min-width:80px;
+}
+.table.table-lg {
+
+}
+.table.table-lg th,
+.table.table-lg td {
+    padding: 20px 8px;
+    font-size:16px;
+    line-height:1.25;
+}
+
+.table-form {
+
+}
+.table-form th,
+.table-form td {
+    padding:10px 20px;
+    vertical-align: top;
+}
+
+.table-form p {
+    padding:8px 0;
+}
+
+.table th > .checkbox,
+.table th > .radiobox,
+.table td > .checkbox,
+.table td > .radiobox,
+.table td > .btn {
+    margin-top:-10px;
+    margin-bottom: -10px;
+}
+
+
+
+
+.table.table-form th > .checkbox,
+.table.table-form th > .radiobox,
+.table.table-form td > .checkbox,
+.table.table-form td > .radiobox,
+.table.table-form td > .btn {
+    margin-top:0px;
+    margin-bottom: 0px;
+}
+
+.table.table-bordered th,
+.table.table-bordered td {
+    border: 1px solid #dcdcdc;
+    line-height: 1.5;
+}
+
+
+
+.table-container.no-border {
+	border-top:0;
+}
+
+.table-container.no-border .table th,
+.table-container.no-border .table td {
+	border-bottom:0;
+	padding-top:0;
+}
+ 
+

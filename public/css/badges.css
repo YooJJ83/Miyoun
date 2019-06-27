@@ -1,0 +1,35 @@
+.badges .badge {
+    display: block;
+    float: left;
+    padding:6px;
+    color: #fff;
+    background: #000;
+    margin-right:3px;
+} 
+
+
+.badges .badge:last-child {
+    margin-right:0;
+}
+
+.badges .badge.orange {
+    background: #ef7c02;
+}
+.badges .badge.grey {
+    background: #6f6f6f;
+}
+
+.badges .badge.green {
+    background: #39b54a;
+}
+
+.badges .badge.purple {
+    background: #6b66b5;
+}
+
+.badges .badge.blue {
+    background: #00aeef;
+}
+.badges .badge.red {
+    background: #ec5448;
+}

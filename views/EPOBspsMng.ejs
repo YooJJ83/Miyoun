@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang=ko>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="권한관리">
+    <meta property="og:image" content=""><!-- 카카오톡으로 url을 보낼 때 같이 보이는 이미지가 있는 경로 -->
+    <meta property="og:description" content="교육연구학생지도 권한관리">
+
+    <meta name="description" content="교육연구학생지도 권한관리">
+    <meta name="keywords" content="교육연구학생지도 권한관리">
+
+    <title>교육연구학생지도 지표관리</title>
+
+    <link rel="stylesheet" href="../css/desktop.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script type="text/javascript">
+
+    function fnSearch(){
+      document.querySelector('#grid tbody').innerHTML='';   //테이블 초기화      
+      fnSndData('/bsps/index', {});
+    }
+
+    function fnAddRow() {
+
+      let yosa = document.querySelector('#yosa').value;
+      let areCd = document.querySelector('#areCd').value;
+      
+      let arrData = [{'YOSA' : yosa, 'ARE_CD' : areCd,"BSPS_CD" : '', "BSPS_CN" : '', "ALLT_MN_ACTI" : ''}];        
+      fnMakeRow('#grid tbody', arrData,true);      
+    }
+
+    function fnDeleteRow() {
+
+      let checkbox = document.querySelectorAll("#grid input[type='checkbox']:checked");
+      var tr, td, yosa, areCd, bspsCd, arrData = [];
+      for(var i = 0; i < checkbox.length; i++){
+        tr = checkbox[i].parentElement.parentElement;	//체크된 행의 row정보 찾기
+			  td = tr.children;						//체크된 행의 셀 가져오기       
+        
+        yosa = td[1].children[0].value;
+        areCd = td[2].children[0].value;
+        bspsCd = td[3].innerText;
+        
+        arrData.push({"YOSA" : yosa, "ARE_CD" : areCd, "BSPS_CD" : bspsCd});                      
+      }      
+      fnSndData('/bsps/destroy',arrData);   
+    }
+
+    function fnSave(){
+
+      let checkbox = document.querySelectorAll("#grid input[type='checkbox']:checked");
+      var tr, td, yosa, areCd, bspsCd, bspsCn, dvCd, alltMnActi, arrData = [];
+      
+      for(var i = 0; i < checkbox.length; i++){
+        let tr = checkbox[i].parentElement.parentElement;	//체크된 행의 row정보 찾기
+			  let td = tr.children;						//체크된 행의 셀 가져오기        
+
+        if( td[1].children.length == 0){
+          yosa        = td[1].innerText;
+          areCd       = td[2].innerText;          
+        }else{
+          yosa        = td[1].children[0].value;
+          areCd       = td[2].children[0].value;
+        }
+        bspsCd      = td[3].innerText;
+        bspsCn      = td[4].children[0].value;
+        dvCd        = td[5].children[0].value;
+        alltMnActi  = td[6].children[0].value;
+
+        arrData.push({"YOSA" : yosa, "ARE_CD" : areCd, "BSPS_CD" : bspsCd, "BSPS_CN" : bspsCn, "DV_CD": dvCd, "ALLT_MN_ACTI":alltMnActi});    
+      }      
+      fnSndData('/bsps/create',arrData)   
+    }
+
+    function fnSndData(url, obj) {
+      document.querySelector('#grid tbody').innerHTML='';   //테이블 초기화    
+      axios.get(url, {
+        params:{
+          yosa: document.querySelector('#yosa').value,
+          areCd: document.querySelector('#areCd').value,
+          gridData : JSON.stringify(obj)          
+        }
+      })
+      .then(function (response) {        
+        fnMakeRow('#grid tbody', response.data, false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    function fnMakeRow(tgtGrid, arrData, isNew){
+      let grid = document.querySelector(tgtGrid);
+      let tr = grid.children
+      var row, checkbox, bspsCd, bspsCn, alltMnActi, strSelectHtml, authCell
+      var cell1,cell2,cell3,cell4;
+
+      for(var i = 0; i <  arrData.length; i++){
+        row = grid.insertRow( tr.length ); 
+
+        cell0 = row.insertCell(0);
+        cell1 = row.insertCell(1);
+        cell2 = row.insertCell(2);
+        cell3 = row.insertCell(3);
+        cell4 = row.insertCell(4);
+        cell5 = row.insertCell(5);
+        cell6 = row.insertCell(6);
+        cell0.classList.add("text-center");
+        cell1.classList.add("text-center");
+        cell2.classList.add("text-center");
+        cell3.classList.add("text-center");        
+        cell4.classList.add("text-center");
+        cell5.classList.add("text-center");
+        cell6.classList.add("text-center");
+        //체크박스 만들기        
+        if(isNew){
+          checkbox = "<input type='checkbox' value='I' checked/>";
+        }else{
+          checkbox = "<input type='checkbox' value='I'/>";
+        }
+        cell0.innerHTML = checkbox;
+
+        //학년도 셀렉트 박스 만들기        
+        if(isNew){
+          selectbox  = "<select name='yosaCng' onchange='fnChkRow("+(i+1)+")' title='학년도' class='form form-full'>";          
+        }else{
+          selectbox  = "<select name='yosaCng' onchange='fnChkRow("+(i+1)+")' title='학년도' class='form form-full' disabled>";
+        }
+        selectbox += "<option value='2019'";
+        if(arrData[i].YOSA == '2019') selectbox+= "selected";
+        selectbox += ">2019</option>";
+        selectbox += "<option value='2018'";
+        if(arrData[i].YOSA == '2018') selectbox+= "selected";
+        selectbox += ">2018</option>";
+        + "</select>";
+        cell1.innerHTML = selectbox;
+
+        //영역 셀렉트 박스 만들기
+        if(isNew){
+          selectbox  = "<select name='areCdCng' onchange='fnChkRow("+(i+1)+")' title='영역' class='form form-full'>";          
+        }else{
+          selectbox  = "<select name='areCdCng' onchange='fnChkRow("+(i+1)+")' title='영역' class='form form-full' disabled>";  
+        }
+        selectbox += "<option value='1'";
+        if(arrData[i].ARE_CD == '1') selectbox+= "selected";
+        selectbox += ">교육영역</option>";
+        selectbox += "<option value='2'";
+        if(arrData[i].ARE_CD == '2') selectbox+= "selected";
+        selectbox += ">연구영역</option>";
+        selectbox += "<option value='3'";
+        if(arrData[i].ARE_CD == '3') selectbox+= "selected";
+        selectbox += ">학생지도영역</option>";
+        + "</select>";
+        cell2.innerHTML = selectbox;
+
+        //구분 셀렉트 박스 만들기
+        selectbox  = "<select name='dvCdCng' onchange='fnChkRow("+(i+1)+")' title='영역' class='form form-full'>";
+        selectbox += "<option value='1'";
+        if(arrData[i].DV_CD == '1') selectbox+= "selected";
+        selectbox += ">공통</option>";
+        selectbox += "<option value='2'";
+        if(arrData[i].DV_CD == '2') selectbox+= "selected";
+        selectbox += ">선택</option>";        
+         + "</select>";
+        cell5.innerHTML = selectbox;
+        //지표코드 입력        
+        //        
+        cell3.innerHTML = arrData[i].BSPS_CD;          
+        cell4.innerHTML = '<input type="text" name="bspsCn"  value="'+arrData[i].BSPS_CN+'" class="form" title="지표명" >';           
+        cell6.innerHTML = '<textarea class="form form-full" title="배점 및 주요활동" >'+arrData[i].ALLT_MN_ACTI+'</textarea>';        
+      }
+    }
+    function fnChkRow(idx){      
+      let tr = grid.querySelectorAll("#grid input[type='checkbox']");            
+      tr[idx].checked = true;
+    }
+    </script>
+  </head>
+
+  <body class="desktop">
+    <h1 class="hidden">지표관리</h1>
+    <div class="wrapper">
+      <div id="content">
+        <div class="section bg-white">
+          <div class="container">
+            <div class="content-block">
+              <div class="content-block-header">
+                <div class="block-title">
+                  <h3 class="title">
+                    <strong><span class="text-blue">지표</span>관리</strong>
+                  </h3>
+                </div>
+              </div>
+              <div class="content-block-body">
+                <div class="board-write">
+                  <div class="table-container m-b-30">
+                    <form id="frm" name="frm" action="/ekp/user/qanda/handleUBDQanda.do" method="post" onSubmit="return false;">
+                      <table class="table table-form">
+                        <caption>지표관리</caption>
+                          <tbody>
+                            <tr>
+                              <th class="bg-grey" width="100">
+                                  <label class="form-label form-label-lg" for="authCd">학년도</label>
+                              </th>
+                              <td>
+                                <div class="category">
+  	                              <select id="yosa" name="yosa" class="form" title="학년도">                                    
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                  </select>
+                                </div>
+                              </td>
+                              <th class="bg-grey" width="100">
+                                  <label class="form-label form-label-lg" for="sklstfNo">영역</label>
+                              </th>
+                              <td>
+                                <div class="category">
+  	                              <select id="areCd" name="areCd" class="form" title="영역">                                    
+                                    <option value="">- 전체 -</option>
+                                    <option value="1">교육영역</option>
+                                    <option value="2">연구영역</option>
+                                    <option value="3">학생지도영역</option>
+                                  </select>
+                                </div>                                
+                              </td>
+                              <td>
+                                <button type="submit" onclick="fnSearch(); return false;" class="btn btn-outline btn-bordered btn-style-a btn-sm">검색</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="btns text-right">
+                    <button type="button" id="btnAdd"  onclick="fnAddRow();" class="btn btn-outline btn-bordered btn-sm btn-style-a ">추가</button>
+                    <button type="button" id="btnDel"  onclick="fnDeleteRow();" class="btn btn-outline btn-bordered btn-sm btn-style-a ">삭제</button>
+                    <button type="button" id="btnSave" onclick="fnSave();" class="btn btn-outline btn-bordered btn-sm btn-style-a ">저장</button>
+                    <br><br>
+                  </div>
+                </div>
+                <div class="table-container m-b-30">
+                  <table class="table table-lg" id="grid">
+                    <caption>지표관리</caption>
+                    <colgroup>
+                      <col style="width:5%">
+                      <col style="width:15%;">
+                      <col style="width:15%;">
+                      <col style="width:10%;">
+                      <col style="width:20%">
+                      <col style="width:10%;">
+                      <col style="width:25%">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th  class="text-center bg-grey" scope="col"><input type='checkbox' name='checkAll' /></th>
+                        <th  class="text-center bg-grey" scope="col">학년도</th>
+                        <th  class="text-center bg-grey" scope="col">영역</th>
+                        <th  class="text-center bg-grey" scope="col">지표<br>코드</th>
+                        <th  class="text-center bg-grey" scope="col">지표명</th>
+                        <th  class="text-center bg-grey" scope="col">구분</th>
+                        <th  class="text-center bg-grey" scope="col">배점 및 <br>주요활동</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination m-b-30" id="pager"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

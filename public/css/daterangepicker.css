@@ -1,0 +1,432 @@
+@charset "UTF-8";
+
+body {
+    position: relative;
+    margin: 0;
+}
+.dr-picker
+{
+    font-size: 12px;
+    position: absolute;
+    z-index: 999999;
+    border: 1px solid #bfbfbf;
+    background-color: #efefef;
+    padding: 5px 12px;
+    line-height: 20px;
+    color: #aaa;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    display: none;
+}
+.dr-picker,
+.dr-picker *
+{
+    box-sizing: initial;
+}
+.dr-picker.inline
+{
+    position: relative;
+    box-shadow: none;
+    display: inline-block;
+}
+.dr-picker.no-topbar
+{
+    padding-top: 12px;
+}
+.dr-picker .footer
+{
+    font-size: 11px;
+    padding-top: 3px;
+}
+.dr-picker b
+{
+    color: #666;
+    font-weight: 700;
+}
+.dr-picker .month-name
+{
+    text-transform: uppercase;
+}
+.dr-picker .month-wrapper
+{
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+    background-color: white;
+    padding: 5px;
+    cursor: default;
+    position: relative;
+    _overflow: hidden;
+}
+.dr-picker .month-wrapper table
+{
+    width: 196px;
+    float: left;
+}
+.dr-picker .month-wrapper table th,
+.dr-picker .month-wrapper table td
+{
+    vertical-align: middle;
+    text-align: center;
+    line-height: 14px;
+    min-width: 24px;
+    margin: 0;
+    padding: 0;
+}
+.dr-picker .month-wrapper table th.button
+{
+    width: 27px;
+}
+.dr-picker .month-wrapper table tbody td>div
+{
+    -webkit-transition: all 0.25s linear 0s;
+    -moz-transition: all 0.25s linear 0s;
+    -ms-transition: all 0.25s linear 0s;
+    transition: all 0.25s linear 0s;
+}
+.dr-picker .month-wrapper table tbody td>div:hover
+{
+    outline: 1px solid #ddd;
+    box-shadow: 0 0 5px #aaa;
+}
+.dr-picker .month-wrapper table .day
+{
+    padding: 5px 0;
+    line-height: 1;
+    font-size: 12px;
+    margin-bottom: 1px;
+    color: #CCC;
+    cursor: default;
+}
+.dr-picker .month-wrapper table div.day.lastMonth,
+.dr-picker .month-wrapper table div.day.nextMonth
+{
+    color: #DDD;
+    cursor: default;
+}
+.dr-picker .month-wrapper table .day.checked
+{
+    background-color: #9cdbf7;
+}
+.dr-picker .month-wrapper table .day.invalid.hovering,
+.dr-picker .month-wrapper table .day.invalid.checked,
+.dr-picker .month-wrapper table .day.unselectable.hovering,
+.dr-picker .month-wrapper table .day.unselectable.checked
+{
+    color: #900 !important;
+    background-color: #DA7;
+}
+.dr-picker .month-wrapper table .day.invalid.range-start,
+.dr-picker .month-wrapper table .day.invalid.range-end,
+.dr-picker .month-wrapper table .day.unselectable.range-start,
+.dr-picker .month-wrapper table .day.unselectable.range-end
+{
+    background-color: #D73 !important;
+}
+.dr-picker .month-wrapper table .day.skipped.hovering,
+.dr-picker .month-wrapper table .day.skipped.checked
+{
+    color: #CCF !important;
+    background-color: #DEF;
+}
+.dr-picker .month-wrapper table .invalid,
+.dr-picker .month-wrapper table .unselectable,
+.dr-picker .month-wrapper table .skipped
+{
+    color: #CCC !important;
+    cursor: default !important;
+}
+.dr-picker .month-wrapper table .invalid:hover,
+.dr-picker .month-wrapper table .unselectable:hover,
+.dr-picker .month-wrapper table .skipped:hover
+{
+    outline: none;
+    box-shadow: none;
+}
+.dr-picker .month-wrapper table .week-name
+{
+    height: 20px;
+    line-height: 20px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+.dr-picker .month-wrapper table .day.toMonth.valid
+{
+    color: #888;
+    cursor: pointer;
+}
+.dr-picker .month-wrapper table .day.toMonth.hovering
+{
+    background-color: #cdecfa;
+}
+.dr-picker .month-wrapper table .day.toMonth.valid.weekend
+{
+    color: #D99;
+}
+.dr-picker .month-wrapper table .day.toMonth.invalid.weekend
+{
+    color: #ECC !important;
+}
+.dr-picker .month-wrapper table .day.nextMonth,
+.dr-picker .month-wrapper table .day.lastMonth
+{
+    display: none;
+}
+.dr-picker .month-wrapper table .day.real-today
+{
+    background-color: #ffe684;
+}
+.dr-picker .month-wrapper table .day.real-today.checked,
+.dr-picker .month-wrapper table .day.real-today.hovering
+{
+    background-color: #4AC;
+    color: #CEF;
+}
+.dr-picker .month-wrapper table .day.real-today.invalid.checked,
+.dr-picker .month-wrapper table .day.real-today.invalid.hovering
+{
+    background-color: #A75;
+}
+.dr-picker .month-wrapper table .range-start,
+.dr-picker .month-wrapper table .range-end
+{
+    background-color: #49e !important;
+    color: white !important;
+}
+.dr-picker .month-wrapper table .week-number
+{
+    padding: 5px 0;
+    line-height: 1;
+    font-size: 12px;
+    margin-bottom: 1px;
+    color: #999;
+    cursor: pointer;
+}
+.dr-picker .month-wrapper table .week-ranged
+{
+    color: #4499EE;
+    font-weight: bold;
+    background: #DEF;
+}
+.dr-picker .month-wrapper table .week-ranged.invalid,
+.dr-picker .month-wrapper table .week-ranged.unselectable
+{
+    color: #C66 !important;
+    background: #FCA;
+}
+.dr-picker table .caption
+{
+    height: 40px;
+}
+.dr-picker table .caption .next,
+.dr-picker table .caption .prev
+{
+    padding: 0 5px;
+    cursor: pointer;
+}
+.dr-picker table .caption .next:hover,
+.dr-picker table .caption .prev:hover
+{
+    background-color: #ccc;
+    color: white;
+}
+.dr-picker .gap
+{
+    position: relative;
+    z-index: 1;
+    width: 12px;
+    /*background-color: red;*/
+    font-size: 0;
+    line-height: 0;
+    float: left;
+    top: -5px;
+    margin: 0 8px -10px;
+    visibility: hidden;
+    height: 0;
+}
+.dr-picker .gap .gap-lines
+{
+    height: 100%;
+    overflow: hidden;
+}
+.dr-picker .gap .gap-line
+{
+    position: relative;
+}
+.dr-picker .gap .gap-line .gap-1
+{
+    z-index: 1;
+    height: 0;
+    border-left: 8px solid white;
+    border-top: 8px solid #eee;
+    border-bottom: 8px solid #eee;
+}
+.dr-picker .gap .gap-line .gap-2
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-top: 8px solid white;
+}
+.dr-picker .gap .gap-line .gap-3
+{
+    position: absolute;
+    right: 0;
+    top: 8px;
+    z-index: 2;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+.dr-picker .gap .gap-top-mask
+{
+    width: 8px;
+    height: 1px;
+    position: absolute;
+    top: -1px;
+    left: 1px;
+    background-color: #eee;
+    z-index: 3;
+}
+.dr-picker .gap .gap-bottom-mask
+{
+    width: 8px;
+    height: 1px;
+    position: absolute;
+    bottom: -1px;
+    left: 1px;
+    background-color: #eee;
+    z-index: 3;
+}
+.dr-picker .spacer
+{
+    clear: both;
+    height: 0;
+    font-size: 0;
+}
+.dr-picker .selected-days
+{
+    display: none;
+}
+.dr-picker .top-bar
+{
+    line-height: 1.4;
+    position: relative;
+    padding: 10px 40px 10px 0;
+}
+.dr-picker .top-bar div
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dr-picker .top-bar .error-top
+{
+    display: none;
+}
+.dr-picker .top-bar .normal-top
+{
+    display: none;
+}
+.dr-picker .top-bar .default-top
+{
+    display: block;
+}
+.dr-picker .top-bar.error .default-top
+{
+    display: none;
+}
+.dr-picker .top-bar.error .error-top
+{
+    display: block;
+    color: red;
+}
+.dr-picker .top-bar.normal .default-top
+{
+    display: none;
+}
+.dr-picker .top-bar.normal .normal-top
+{
+    display: block;
+}
+.dr-picker .top-bar .apply-btn
+{
+    position: absolute;
+    right: 0;
+    top: 6px;
+    padding: 3px 5px;
+    margin: 0;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: solid 1px #0076a3;
+    background: #0AE;
+    box-shadow: inset -1px -2px 6px #069;
+    color: white;
+    line-height: initial;
+}
+.dr-picker .top-bar .apply-btn.disabled
+{
+    color: #606060;
+    border: solid 1px #b7b7b7;
+    background: white;
+    box-shadow: inset -1px -2px 6px #DDD;
+}
+.dr-picker .hide
+{
+    display: none;
+}
+.dr-picker .range-tip
+{
+    position: absolute;
+    margin-top: -4px;
+    margin-left: -8px;
+    box-shadow: 0 0 8px #888;
+    display: none;
+    background-color: yellow;
+    padding: 0 6px;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 16px;
+}
+.dr-picker .range-tip:after
+{
+    content: '';
+    position: absolute;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid yellow;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -4px;
+}
+.dr-picker.two-months.no-gap .month1 .next,
+.dr-picker.two-months.no-gap .month2 .prev
+{
+    display: none;
+}
+.dr-picker div.shortcuts {
+    white-space: nowrap;
+    overflow: hidden;
+}
+.dr-picker div.shortcuts.none
+{
+    opacity: 0;
+    height: 6px;
+}
+.dr-picker div.shortcuts span {
+    margin-left: 0.25em;
+}
+.dr-picker div.shortcuts span.shortcut {
+    color: #48C;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.dr-picker div.shortcuts span.shortcut:hover {
+    color: #C8F;
+}
+
+.date-picker-wrapper {
+    z-index: 99999;
+}

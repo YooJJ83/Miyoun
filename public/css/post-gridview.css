@@ -1,0 +1,156 @@
+
+.post-list.grid-view ul {
+    margin: 0 -30px;
+    margin: 0 -10px;
+}
+.post-list.grid-view ul li {
+    float: left;
+    width:25%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*border-right:1px dotted #959595;*/
+    background: url(../img/patterns/dot-h.png) 100% 0 repeat-y;
+    margin-bottom:50px;
+}
+
+
+.post-list.grid-view ul li:nth-child(4n) {
+    border-right:0;
+    background-image:none;
+}
+.post-list.grid-view .post-list-item {
+    position: relative;
+    width:204px;
+    margin:0 auto;
+}
+
+/*20180206접근성테스트*/
+.post-list.grid-view .post-list-item a {
+    display: block;
+}
+
+.post-list.grid-view .post-list-item a:focus .post-tb .over {
+    opacity:1;
+    visibility: visible;
+}
+
+.post-list.grid-view .post-list-item a:focus .badges .pull-left {
+    display:block;
+}
+
+.post-list.grid-view .post-list-item a:focus .badges .pull-right {
+	display:none;
+}
+/*//20180206접근성테스트*/
+
+.post-list.grid-view .post-list-item .post-tb {
+    /*overflow: hidden;*/
+    position: relative;
+    margin-bottom:12px;
+}
+
+.post-list.grid-view .post-list-item .post-tb img {
+    width: 204px;
+    height: 115px;
+    display: block;
+    /*width:100%;*/
+}
+
+.post-list.grid-view .post-list-item .post-tb .over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    display: block;
+    opacity:0;
+    visibility: hidden;
+    -webkit-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
+   
+}
+
+.post-list.grid-view .post-list-item .post-tb .over .label {
+    display: block;
+    border:1px solid #fff;
+    color: #fff;
+    position: absolute;
+    padding:10px 15px;
+    top: 50%;
+    left:50%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.post-list.grid-view .post-list-item:hover .post-tb .over {
+    opacity:1;
+    visibility: visible;
+}
+
+.post-list.grid-view .post-list-item .badges {
+    position: absolute;
+    top:3px;
+    left:3px;
+    right:3px;
+}
+
+.post-list.grid-view .post-list-item .badges .pull-left {
+    display:none;
+}
+.post-list.grid-view .post-list-item:hover .badges .pull-left {
+    display:block;
+}
+
+.post-list.grid-view .post-list-item:hover .badges .pull-right {
+	display:none;
+}
+
+.post-list.grid-view .post-list-item .post-title {
+    display: block;
+    text-align: center;
+    font-size:16px;
+    letter-spacing:-0.05em;
+    height:38px;
+}
+
+
+.post-list .loadmore {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.post-list .loadmore .btn {
+    width:190px;
+}
+
+.post-list.grid-view .post-list-item .btn-delete {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url(../img/icons/icon_zzim_delete.png);
+    display: block;
+    border: none;
+    background-color: transparent;
+/*
+    font-size: 14px;
+    line-height: 18px;
+*/
+    right: -8px;
+    top:-8px;
+/*
+    text-align: center;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    background: #696969;
+    color: #fff;
+    border: #000;
+*/
+} 

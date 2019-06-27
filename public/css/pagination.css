@@ -1,0 +1,42 @@
+.pagination {
+    text-align: center;
+    line-height:26px;
+}
+
+.pagination a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size:16px;
+    vertical-align: middle;
+    color: #959595;
+}
+
+
+.pagination a.current {
+    color: #c62167;
+}
+.pagination .btn-prev,
+.pagination .btn-next {
+    width: 26px;
+    height:26px;
+    padding:0;
+
+}
+
+
+.pagination .btn-prev span,
+.pagination .btn-next span {
+    width: 24px;
+    height:24px;
+    background: 50% 50% no-repeat;
+    text-indent:-999em;
+    overflow: hidden;
+    display: block;
+}
+
+.pagination .btn-prev span {
+    background-image: url(../img/icons/icon-prev-sm.png);
+}
+.pagination .btn-next span {
+    background-image: url(../img/icons/icon-next-sm.png);
+}

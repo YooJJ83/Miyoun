@@ -1,0 +1,258 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="knou" uri="/WEB-INF/tld/knou.tld"%>
+<%@ include file="/WEB-INF/view/knou/core/component/jqGrid.jsp"%>
+<%@ include file="/WEB-INF/view/knou/core/component/jsTree.jsp"%>
+<%--
+ * 최초작성자 : 유재준
+ * 최초작성일 : 2018.10.05.
+ * 최종변경일 : 2018.
+ * 목적 : 교육연구학생지도 실적보고서 승인관리
+ * 저작권 : 한국방송통신대학교
+--%> 
+<script type="text/javascript">
+
+	function acrsRepoSubm(cdNo, count, score) {
+		this.cdNo = cdNo;
+		this.count = count;		
+		this.score = score;		
+	}
+	 
+	function getObject(cdNo, count, score) {
+		return new actiPldcSubm(cdNo, count, score);
+	}
+	
+	//오늘날짜 가져오기
+	function fn_today(dc){
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1;
+		var yyyy = today.getFullYear();
+		
+		if(dc == "Y"){
+			return yyyy;
+		}else if(dc =="M"){
+			return mm;
+		}else{
+			return dd;
+		}	
+	}
+	
+
+	$( function() {
+		var lastsel = 0;
+		$("#jqgrid").jqGrid({
+			datatype : "json",
+			mtype : "post",
+			colNames : [ '','학년도','영역','부서명', '이름','승인여부'],
+			colModel : [
+				{name : 'flag',	   index : 'flag',    align : 'center', editable : false,  hidden : true},
+				{name :	'yosa',    index : 'yosa',    align : 'center', editable : false,  width:  100},
+				{name : 'bspsNo',  index : 'bspsNo',  align : 'center', editable : false,  width:  100, formatter : 'select', edittype : 'select',	
+					editoptions : { value : {'1':'교육','2':'연구','3':'학생지도'}}
+				},		
+				{name : 'dpnm',    index : 'dpnm',    align : 'center', editable : false,  width:  260},
+				{name : 'pnn',     index : 'pnn',     align : 'center', editable : false,  width:  80},
+				{name : 'aprvYn',  index : 'aprvYn',  align : 'center', editable : false,  width:  160, formatter : 'select', edittype : 'select',	
+					editoptions : { value : {'1':'승인','2':'미승인'}}
+				}
+			],
+			multiselect : true, //왼쪽의 체크박스
+			autowidth : false, 
+			rowNum : 10,
+			shrinkToFit:false,//수평 스크롤 생성 가능(기본값-true : 없음)
+			width : 768,
+			height : 280, 
+			scrollOffset:0, 
+			jsonReader : {
+				repeatitems : false
+			},
+			onSelectRow : function(id) {
+				if (id && id != lastsel) {
+					/* $("#jqgrid").setColProp('aprvYn',{editable : true});
+					$('#jqgrid').jqGrid('editRow', id, true); */
+					lastsel = id;
+				}
+			},
+			onCellSelect : function(rowid, iCol, cellContent,e) {
+				// 그리드 아이디 지정
+				var grdId = "jqgrid";
+				var mSelArrow = $("#" + grdId).jqGrid('getGridParam','selarrrow');
+				var selRow = jQuery.inArray(rowid, mSelArrow);
+				if(iCol != 0) {
+					$("#jqg_"+grdId+"_" + rowid).attr("checked", true);
+					if(selRow == -1) {
+						mSelArrow.push(rowid);
+					} 
+					
+				} else {
+					if(selRow == -1) {
+						mSelArrow.push(rowid);
+						$("#jqg_"+grdId+"_" + rowid).attr("checked",true);
+					} else {
+						$("#jqg_"+grdId+"_" + rowid).attr("checked",false);
+						mSelArrow.splice(selRow, 1);
+                        e = mSelArrow[0];
+                        mSelArrow.selrow = (e == undefined) ? null : e;
+					}					
+				}
+			}, 			
+			loadComplete : function() {
+				
+				var records = $("#jqgrid").getGridParam("records");
+				
+				$('#total').text('[ 건수 : ' + records + ' 건 ]');
+				if( records==0) {
+					$("#msgBox").text('<spring:message code="E5430"/>');
+				} else {
+					$("#msgBox").text("");
+				}
+
+				var lastpage = $('#jqgrid').getGridParam("lastpage");
+				var page = $('#jqgrid').getGridParam("page");
+				PageClick( $('#jqgrid'), $("#pager"), page, lastpage );	
+				lastsel=0;
+			}						
+		});	
+		
+		var sendTgtIdx = 0;		
+		$('#btn_aprv').click(function(){
+			$("#jqgrid").jqGrid('addRowData',++sendTgtIdx,{});
+			            
+            if(sendTgtIdx ==1){
+            	$("#jqgrid").setRowData(sendTgtIdx, {yosa:'2019'});
+            	$("#jqgrid").setRowData(sendTgtIdx, {bspsNo:'3'});            	
+            	$("#jqgrid").setRowData(sendTgtIdx, {aprvYn:'2'});
+            	$("#jqgrid").setRowData(sendTgtIdx, {dpnm:'정보전산원'});
+            	$("#jqgrid").setRowData(sendTgtIdx, {pnn:'유재준'});            	
+            }else{
+            	$("#jqgrid").setRowData(sendTgtIdx, {yosa:'2019'});
+            	$("#jqgrid").setRowData(sendTgtIdx, {bspsNo:'1'});            	
+            	$("#jqgrid").setRowData(sendTgtIdx, {aprvYn:'1'});   
+            	$("#jqgrid").setRowData(sendTgtIdx, {dpnm:'정보전산원'});
+            	$("#jqgrid").setRowData(sendTgtIdx, {pnn:'유재준'});
+            }
+		});
+	});
+	
+	
+</script>
+<body class="main">
+	<div id="stage">
+			<!-- Header -->
+		<div id="header">
+			<h1 class="title">실적보고서승인관리</h1>
+			<%-- <knou:location menuId="309304"/> --%>
+			<div class="query">	
+				<form>			
+					<table cellpadding="0" cellspacing="0"  summary="table infomation" class="query-table">
+						<tbody>
+							<tr>
+								<th width="50">
+									<span class="text">학년도</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<select id="yosa" name="yosa" class="selectbox" title="학년도">												
+											<option value="2019" >2019</option>
+											<option value="2018" >2018</option>																					  										  						  
+										</select>
+									</span>
+								</th>
+								<th width="50">
+									<span class="text">지표구분</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<select id="bspsNo" name="bspsNo" class="selectbox" title="지표구분">	
+										  <option value="1" <c:if test="${bspsNo == 1}">selected</c:if>>교육</option>
+										  <option value="2" <c:if test="${bspsNo == 2}">selected</c:if>>연구</option>
+										  <option value="3" <c:if test="${bspsNo == 3}">selected</c:if>>학생지도</option>										  						  
+										</select>
+									</span>
+								</th>
+								<th width="50">
+									<span class="text">실적보고서처리상태</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<select id="bspsNo" name="bspsNo" class="selectbox" title="지표구분">
+										  <option value="" >전체</option>	
+										  <option value="1" >제출</option>
+										  <option value="2" >승인</option>										  								  						  
+										</select>
+									</span>
+								</th>	
+							</tr>
+							<tr>
+								<th width="50">
+									<span class="text">부서명</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<select id="bspsNo" name="bspsNo" class="selectbox" title="지표구분">
+											<option value="" >행정지원과</option>	
+										  	<option value="1" >행정지원과</option>
+										  	<option value="2" >학사운영과</option>
+										  	<option value="3" >정보전산원</option>										  						  
+										</select>
+									</span>
+								</th>	
+								<th width="50">
+									<span class="text">이름</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<input type="text" name="userTpId" id="userTpId" value="" readonly/>
+										<input type="image" id="btn_search" title="조회" alt="조회" src="/images/core/btn/btn-search.gif" />										
+										<input type="text" name="pnn" id="pnn" value="" readonly/>										
+									</span>
+								</th>																
+								<td class="action" colspan="2">
+									<span class="button">
+										<input type="image" id="btn_search" title="조회" alt="조회" src="/images/core/btn/btn-query.gif" />
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	
+		<!-- Contents Container -->
+		<div id="container">			
+			<div class="ui-section">
+				<div class="ui-section-header">
+					<h2 class="title">실적보고서승인관리</h2>
+					<ul class="action">
+						<li>
+							<span class="button"><input type="image" id="btn_blkpc" name="btn_blkpc" alt="전체선택" title="전체선택" src="/images/core/btn/btn-blkpc.gif" /></span>
+						</li>						
+						<li>
+							<span class="button"><input type="image" id="btn_aprv" name="btn_aprv" alt="승인" title="승인" src="/images/core/btn/btn-aprv.gif" /></span>
+						</li>
+						<li>
+							<span class="button"><input type="image" id="btn_cancel" name="btn_cancel" alt="취소" title="취소" src="/images/core/btn/btn-cancel.gif" /></span>
+						</li>
+					</ul>					
+				</div>				
+				<div class="ui-section-content">
+           			<ul class="infomation">
+           				<li class="f_left" id="total">[ 건수 : 0 건 ]</li>
+           				<li id="msgBox" class="notify"></li>           				
+           			</ul>
+	        		<table id="jqgrid" summary="table infomation">	        			
+	        		</table>      
+				</div>
+				<div class="ui-section-footer">
+					<div id="pager" class="pager"></div> 
+				</div>			
+			</div>			
+		</div>		
+		<div id="footer"></div>		
+	</div>
+</body>

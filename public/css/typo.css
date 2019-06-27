@@ -1,0 +1,314 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-text-size-adjust: 100%;
+    color: #333;
+    letter-spacing:-0.05em;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+
+small {
+    font-size:.8em;
+}
+strong,
+.bold {
+    font-weight: 700;
+}
+
+.bolder {
+    font-weight:900;
+}
+
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.font-nanumsquare {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+
+
+.title {
+    letter-spacing:-0.1em;
+    font-family: 'NanumSquare', sans-serif;
+}
+
+.title.title-lg {
+    font-size:32px;
+    line-height:40px;
+}
+
+.title.title-md {
+    font-size:26px;
+    line-height:32px;
+}
+
+.title.title-sm {
+    font-size:18px;
+    line-height:22px;
+}
+
+
+.title.page-title {
+    font-size:36px;
+    color: #009ec4;
+    position: relative;
+    line-height:1;
+    padding-left:25px;
+}
+
+.title.page-title:before {
+    position: absolute;
+    width:11px;
+    height:30px;
+    top:2px;
+    left: 0;
+    content: '';
+    background: url(../img/icons/icon-title-head.gif) no-repeat;
+}
+
+
+
+.font-md {
+    font-size:14px;
+    line-height:16px;
+}
+
+.font-lg {
+    font-size:16px;
+    line-height:24px;
+}
+
+.font-xl {
+    font-size:20px;
+    line-height:30px;
+}
+
+.font-xxxl {
+    font-size:28px;
+    line-height:36px;
+}
+
+.font-14 {
+    font-size: 14px !important;
+}
+
+.font-16 {
+    font-size: 16px !important;
+}
+
+.font-18 {
+    font-size: 18px !important;
+}
+
+.font-20 {
+    font-size: 20px !important;
+}
+
+.font-22 {
+    font-size:22px !important;
+}
+
+.font-24 {
+    font-size:24px !important;
+}
+
+
+.font-25 {
+    font-size: 25px !important;
+}
+
+.font-26 {
+    font-size: 26px !important;
+}
+
+.font-28 {
+    font-size:28px !important;
+}
+
+.font-30 {
+    font-size:30px !important;
+}
+
+.font-32 {
+    font-size:32px !important;
+}
+
+.font-34 {
+    font-size:34px !important;
+}
+
+
+.text-blue {
+    color: #44bfde !important;
+}
+
+.text-red {
+    color: #e94f90 !important;
+}
+.text-skyblue {
+    color: #27a1e4 !important;
+}
+
+.text-darkblue {
+    color: #009ec4 !important;
+}
+
+
+.font-grey {
+    color: #999;
+}
+
+.font-dark-grey {
+    color: #666;
+}
+
+.font-magenta {
+    color: #d1286f !important;
+}
+
+
+.text-hover:hover {
+    color: #1eaadf;
+}
+
+.underline-dot {
+    border-bottom:1px dashed #e1e1e1;
+    padding-bottom:2px;
+}
+
+.text-blue.underline-dot {
+    border-bottom-color: #44bfde;
+}
+.ellipsis {
+    white-space:nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.information {
+    position: relative;
+    padding-left:30px;
+    line-height:26px;
+}
+
+.information:before {
+    content:'';
+    background: url(../img/icons/icon-i.png);
+    width:23px;
+    height:26px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top:2px;
+
+}
+
+.notification {
+    position: relative;
+    padding-left:30px;
+    line-height:26px;
+}
+
+.notification:before {
+    content:'';
+    background: url(../img/icons/icon-notification.png);
+    width:22px;
+    height:19px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top:4px;
+
+}
+
+
+.block-title {
+    border-bottom:1px solid #d6d6d6;
+    position: relative;
+}
+
+.block-title.block-sub-title {
+
+}
+
+.block-title .title {
+    font-size: 24px;
+    border-bottom: 5px solid #85d1e7;
+    display: inline-block;
+    padding:0 10px 8px 10px;
+    margin-bottom: -1px;
+    color: #666666;
+}
+
+.block-title.block-sub-title .title {
+    border-bottom:0;
+    color: #333;
+}
+
+.block-title .utils {
+    position: absolute;
+    top: 0;
+    right:10px;
+}
+
+.block-title .utils a {
+    float: left;
+    margin-left:20px;
+}
+
+
+.disc-title {
+    font-size:18px;
+    line-height:18px;
+}
+
+.disc-title:before {
+    content:'•';
+    display: block;
+    float: left;
+    width: 20px;
+    color: #7f7f7f;
+    font-size: 22px;
+    line-height: 18px;
+    font-weight: 500;
+}
+
+.disc-title-after-content {
+    padding-left: 20px;
+}
+
+
+.disc-title.bottom-dotted {
+    padding-bottom:30px;
+    border-bottom:1px dotted #d6d6d6;
+}
+
+.split {
+    font-size: .9em;
+    opacity:.5;
+    margin: 0 4px;
+
+}
+.split2 {
+    font-size: .9em;
+    opacity:.5;
+    margin: 0 2px;
+
+}

@@ -1,0 +1,386 @@
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    font: inherit;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height:1;
+}
+
+form legend {
+    display: none;
+    font-size:0;
+    height:0;
+    opacity:0;
+    visibility: hidden;
+}
+
+
+
+.form {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border:1px solid #c8c8c8;
+    color: #333333;
+    padding:4px 10px;
+    height:34px;
+    background: #fff;
+}
+
+.form.plain-text {
+    border-color:transparent;
+    padding-left:0;
+    padding-right:0;
+}
+
+.form.form-lg {
+    height:40px;
+    font-size:16px;
+}
+
+.form.error {
+    border-color: #e94f90;
+}
+
+.table-form .form-alert {
+    display: block;
+    color: #e94f90;
+    font-size:14px;
+    padding-top:10px;
+    padding-left:10px;
+}
+
+.form-full {
+    display: block;
+    width: 100%;
+}
+
+textarea.form {
+    padding:10px;
+    line-height:1.4;
+    resize:none;
+}
+
+
+select.form {
+    padding-right:4px;
+
+}
+
+.appearance select.form {
+    padding-right:30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(../img/icons/icon-select.png);
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+
+}
+
+
+
+.appearance select.form:hover {
+    border-color: #c62167;
+    background-position: 100% -32px;
+}
+
+
+.appearance select.form.form-lg {
+    background-position: 100% 4px;
+}
+
+.appearance select.form.form-lg:hover {
+    border-color: #c62167;
+    background-position: 100% -28px;
+}
+
+
+select option {
+    padding:10px;
+}
+
+.checkbox,
+.radiobox {
+    display: inline-block;
+    height:26px;
+    line-height:26px;
+    padding-left:34px;
+    position: relative;
+    cursor: pointer;
+}
+
+/*.checkbox input,*/
+/*.radiobox input {*/
+    /*position: absolute;*/
+    /*width:0;*/
+    /*height:0;*/
+    /*opacity:0;*/
+    /*top: 0;*/
+    /*left: 0;*/
+/*}*/
+
+.checkbox input[type="checkbox"],
+.radiobox input[type="radio"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:26px;
+    height:26px;
+    display: block;
+    margin:0;
+    padding:0;
+}
+
+
+.appearance .checkbox input[type="checkbox"],
+.appearance .radiobox input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid #c8c8c8;
+    background: #fff no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin:0;
+    padding:0;
+}
+
+.appearance .checkbox input[type="checkbox"]:checked,
+.appearance .radiobox input[type="radio"]:checked {
+    background-position: 0 -24px;
+}
+
+
+.appearance .checkbox input[type="checkbox"] {
+    background-image: url(../img/icons/icon-check.png);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+
+.appearance .radiobox input[type="radio"] {
+    background-image:url(../img/icons/icon-radio.png);
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+}
+
+
+.checkbox-group .checkbox,
+.radiobox-group .radiobox {
+    font-size:16px;
+    margin-top:6px;
+    margin-bottom: 6px;
+    margin-right:20px;
+}
+
+
+
+.form-file {
+    position: relative;
+}
+
+.form-file input[type="file"] {
+    opacity:0;
+    visibility: hidden;
+    position: absolute;
+    left:-999em;
+}
+
+
+.form-file input,
+.form-file button {
+    vertical-align: top;
+}
+
+.form-file button {
+    margin-left:5px;
+}
+
+.email-form {
+    font-size:0;
+    line-height: 34px;
+    position: relative;
+}
+
+
+
+.email-form.email-form-lg {
+    line-height:40px;
+}
+
+.email-form label {
+    position: absolute;
+    left:-999em;
+    width:0;
+    height:0;
+    font-size:0;
+    opacity:0;
+    visibility: hidden;
+}
+
+.email-form input,
+.email-form span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*width:360px;*/
+.email-form .form1 {
+    width:180px;
+}
+.email-form span {
+    font-size:14px;
+    text-align: center;
+    width:20px;
+}
+
+.email-form .form2 {
+    width:160px;
+}
+
+
+.phone-form {
+    font-size:0;
+    position: relative;
+    line-height:34px;
+}
+
+.phone-form.phone-form-lg {
+    line-height:40px;
+}
+
+.phone-form label {
+    position: absolute;
+    left:-999em;
+    width:0;
+    height:0;
+    font-size:0;
+    opacity:0;
+    visibility: hidden;
+}
+
+.phone-form input,
+.phone-form span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.phone-form .form1 {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.phone-form .form2 {
+    width: 110px;
+}
+
+.phone-form .form3 {
+    width: 110px;
+}
+
+.phone-form .dash {
+    font-size:14px;
+    text-align: center;
+    width:20px;
+}
+
+
+/*label*/
+.form-label {
+    font-size:14px;
+    display: block;
+    padding: 10px 0;
+    line-height:1;
+}
+
+.form-label.form-label-lg {
+    font-size: 16px;
+    padding:12px 0;
+}
+
+.form-label .required {
+    color: #d00000;
+}
+
+
+label.hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity:0;
+    visibility: hidden;
+}
+
+.search-form {
+    padding-right:110px;
+    position: relative;
+}
+.search-form .period-selector {
+    border-right:1px dotted #c7c7c7;
+    font-size:0;
+    display: inline-block;
+    line-height:40px;
+    padding-left:20px;
+    height:40px;
+
+}
+
+.search-form .period-selector label {
+    font-size:18px;
+    margin-right:20px;
+    display: inline-block;
+}
+.search-form .period-selector .btn {
+    margin-right:15px;
+}
+
+.search-form .daterange-selector {
+    font-size:0;
+    display: inline-block;
+    line-height:40px;
+    padding-left:10px;
+    height:40px;
+    position: relative;
+}
+
+.search-form .daterange-selector label {
+    position: absolute;
+    opacity:0;
+    left:-99em;
+    width:0;
+    height:0;
+}
+
+.search-form .daterange-selector input {
+    width:180px;
+    padding-right:40px;
+    background: #fff url(../img/icons/icon-cal.png) 100% 50% no-repeat;
+}
+
+.search-form .daterange-selector .split {
+    font-size:16px;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
+.search-form button[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+}
+

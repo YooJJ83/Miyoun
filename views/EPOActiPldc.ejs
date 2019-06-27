@@ -1,0 +1,606 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="knou" uri="/WEB-INF/tld/knou.tld"%>
+<%@include file="/WEB-INF/view/knou/core/component/jqGrid.jsp"%>
+<%@include file="/WEB-INF/view/knou/core/component/jsTree.jsp"%>
+<%--
+ * 최초작성자 : 유재준
+ * 최초작성일 : 2018.09.07.
+ * 최종변경일 : 2018.
+ * 목적 : 교육연구학생지도 활동계획서 입력
+ * 저작권 : 한국방송통신대학교
+--%> 
+
+<script type="text/javascript">
+
+//팝업의 선택값 세팅 returnUsidInfo
+
+function fn_SetUserInfo(sklstfNo, sklstfNm, deptCode, deptNm) {			
+	$("#sklstfNo").val(sklstfNo);
+	$("#sklstfNm").val(sklstfNm);
+	$("#deptCode").val(deptCode);
+	$("#deptNm").val(deptNm);			
+}
+	
+$( function() {
+	
+	var aprvAreCd = ["${areCd1}","${areCd2}","${areCd3}"];			//영역 별 승인여부		  
+	var authCd = "${auth}";											//사용자의 권한 1 : 관리자, 2 : 부서관리자
+	
+
+	function findUserPop(){
+		$(this).popupWindowInEvent({
+			centerScreen:1,
+			windowURL:'/portal/epo/studgdc/initStudgdcSearchUser.do', 
+			windowName:'searchUserPop',
+			width:820, 
+			height:445
+		});
+	}
+	
+	
+	
+	//관리자나 부서관리자가 아니면 검색창 안보이기
+	function authCheck(){			
+		if(!(authCd == '1' || authCd == '2')){				
+			$('.authCheck').hide();
+		}
+	}
+	
+	function submActiPldc(flag, yosa, areCd, bspsCd, ct, sc, sklstfNo){
+		this.flag = flag;
+		this.yosa = yosa;
+		this.areCd = areCd;
+		this.bspsCd = bspsCd;
+		this.ct = ct;
+		this.sc = sc;	
+		this.sklstfNo = sklstfNo;
+	}
+
+	function getObject(flag, yosa, areCd, bspsCd, ct, sc, sklstfNo){
+		return new submActiPldc(flag, yosa, areCd, bspsCd, ct, sc, sklstfNo);
+	}
+	//선택영역 합계와 영역별 합계 계산 및 출력 
+	function getTotals(srcGrid, subTotTgt, totTgt){
+		var ids = $(srcGrid).jqGrid('getDataIDs');			
+		var subSum = 0;
+		var sum = 0;
+		var sumIdx = 0;		//연구영역에 로우 추가로 인해 
+		
+	    for (var i = 0; i < ids.length; i++) {
+	    	
+	    	ret = $(srcGrid).jqGrid("getRowData", ids[i]);
+	    	
+	    	if(ids[i]==0){		    		
+	    		continue;
+	    	}
+	    	if(ret.dvCd =="선택"){		    		
+	    		subSum+= Number($(srcGrid+" input[name='sc']").eq(sumIdx).val());
+	    	}		
+	    	sum += Number($(srcGrid+" input[name='sc']").eq(sumIdx).val());	
+	    	sumIdx++;
+	    }		     
+	    $(subTotTgt).html(subSum);
+	    $(totTgt).html(sum);		    
+	}
+	
+	function fnOnCellSelect(grdId, rowid, iCol, cellContent,e){
+		var mSelArrow = $("#" + grdId).jqGrid('getGridParam','selarrrow');
+		var selRow = jQuery.inArray(rowid, mSelArrow);
+		if(iCol != 0) {
+			$("#jqg_"+grdId+"_" + rowid).attr("checked", true);
+			if(selRow == -1) {
+				mSelArrow.push(rowid);
+			}
+		} else {
+			if(selRow == -1) {
+				mSelArrow.push(rowid);
+				$("#jqg_"+grdId+"_" + rowid).attr("checked",true);
+			} else {
+				$("#jqg_"+grdId+"_" + rowid).attr("checked",false);
+				mSelArrow.splice(selRow, 1);
+                e = mSelArrow[0];
+                mSelArrow.selrow = (e == undefined) ? null : e;
+			}					
+		}
+	}
+			
+	var selectedTab = 0;
+    $('#tabs').tabs({
+		show : function(event, ui){		 			
+			selectedTab = ui.index;		
+			if(!(authCd == '1' || authCd == '2')){					
+				if(aprvAreCd[selectedTab] == "Y"){
+					//$('#btn_submit').attr("disabled","disabled");
+					$('#btn_submit').hide();
+				}else{
+					//$('#btn_submit').removeAttr("disabled");
+					$('#btn_submit').show();
+				}
+			}
+		}
+	});
+    
+    //3개 그리드에 공통으로 사용되는 컬럼 이름과 속성 공통으로 뽑아 사용
+	var colNames  = ['','학년도','영역','영역','지표코드','지표','회(건)','배점 및 주요활동','점수'];
+	var colModels = [	
+		{name : 'flag', 	index : 'flag', 	hidden:true},
+		{name : 'yosa',		index : 'yosa',		align : 'center', editable : false, hidden:true, width:  50},				
+		{name : 'areCd',	index : 'areCd',	align : 'center', editable : false, hidden:true, width:  80},				
+		{name:'dvCd',   index:'dvCd', align : 'center', editable : false,  width:  80, formatter : 'select', stype:'select', 
+			edittype : 'select', editoptions : { value : {'1':'공통','2':'선택'}}
+		},				
+		{name:'bspsCd', index:'bspsCd', align:'center', hidden:true, editable:false, width:60},
+		{name:'bspsCn', index:'bspsCn',  editable : false, width:220},				
+		{name:'ct' ,    index:'ct'    , align:'center', editable:true, width:60, edittype:"text", editoptions:{
+			size: 5, maxlength: 3,
+			dataEvents:[{
+				type:'keypress', fn:function(e){                                    					
+					if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {							
+						return false;		
+					}
+				}
+			}],
+			dataInit: function(element) {
+				element.style.textAlign = 'center';
+			}
+		}},
+		{name : 'alltMnActi',	index : 'alltMnActi',	editable : false,  width:  240, edittype : 'textarea',	
+			editoptions : { rows : "3", cols : "35"}},
+		{name:'sc', 	index:'sc', 	align:'center', editable:true, width:60, edittype:"text", editoptions:{
+			size: 5, maxlength: 3,
+			dataEvents:[{
+				type:'keypress', fn:function(e){
+					if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {							
+						return false;
+					}
+				},
+				type:'keyup', fn:function(e){					
+					getTotals("#jqgrid"+ (selectedTab+1), "#subTotSum"+(selectedTab+1), "#totSum"+(selectedTab+1));
+				}
+			}],
+			dataInit: function(element) {
+				element.style.textAlign = 'center';
+			}
+		}}
+	];		
+    	    
+	$("#jqgrid1").jqGrid({
+		datatype: 'json',		          
+		mtype:"post",			
+		colNames:colNames,
+		colModel:colModels,
+		multiselect : true,  
+		autowidth : false,
+		rowNum : 15, 
+		width : 720, 
+		height: 'auto',
+		scrollOffset:0,
+		shrinkToFit:false,
+		jsonReader : {
+			repeatitems : false
+		},					
+
+		onCellSelect : function(rowid, iCol, cellContent,e) {
+			// 그리드 아이디 지정
+			var grdId = "jqgrid1";
+			fnOnCellSelect(grdId, rowid, iCol, cellContent,e);
+		},
+		loadComplete : function(data) {
+			var ids = $("#jqgrid1").jqGrid('getDataIDs');				
+		    for (var i = 0; i < ids.length; i++) {
+		    	$("#jqgrid1").jqGrid('editRow', ids[i], true);			    	
+		    }
+		    getTotals("#jqgrid1", "#subTotSum1", "#totSum1");				  
+		}					  	
+	});
+	
+	$("#jqgrid2").jqGrid({
+		datatype: 'json',		        
+		mtype:"post",   
+		colNames:colNames,
+		colModel:colModels,
+		multiselect : true,  
+		autowidth : false,
+		rowNum : 15, 
+		width : 720,
+		height: 'auto',		// dynamic resizing
+		scrollOffset:0,
+		shrinkToFit:false,
+		jsonReader : {
+			repeatitems : false
+		},
+		onCellSelect : function(rowid, iCol, cellContent,e) {
+			// 그리드 아이디 지정
+			var grdId = "jqgrid2";
+			fnOnCellSelect(grdId, rowid, iCol, cellContent,e);
+		},
+		loadComplete : function(data) {
+			var ids = $("#jqgrid2").jqGrid('getDataIDs');				
+		    for (var i = 0; i < ids.length; i++) {			    	
+		    	var ret =  $('#jqgrid2').jqGrid('getRowData', ids[i]);        
+		        if(ret.bspsCd == '1'){			         	
+		         	$("#jqgrid2").jqGrid('addRowData', 0,{},'after',1);			         	
+		         	$("#jqgrid2").find("tr:eq(2) td:eq(6)").attr("colspan", "4"); 
+		         	
+		         	var input= '연구과제명 : <input type="text" name="rschSbjtNm" id="rschSbjtNm" maxlength="100" size="75"/>';
+		         	$("#jqgrid2").setRowData(0, {bspsCn:input});
+		        }			        
+		        $("#jqgrid2").jqGrid('editRow', ids[i], true);
+		    }
+		    getTotals("#jqgrid2", "#subTotSum2", "#totSum2");				    
+		}						
+	});
+	
+	$("#jqgrid3").jqGrid({
+		datatype: 'json',	 	        
+		mtype:"post",   
+		colNames:colNames,
+		colModel:colModels,
+		multiselect : true,  
+		autowidth : false,
+		rowNum : 15, 
+		width : 720,
+		height: 'auto',		// dynamic resizing
+		scrollOffset:0,
+		shrinkToFit:false,
+		jsonReader : {
+			repeatitems : false
+		},
+		onCellSelect : function(rowid, iCol, cellContent,e) {
+			// 그리드 아이디 지정
+			var grdId = "jqgrid3";
+			fnOnCellSelect(grdId, rowid, iCol, cellContent,e);
+		},
+		loadComplete : function(data) {
+			var ids = $("#jqgrid3").jqGrid('getDataIDs');				
+		    for (var i = 0; i < ids.length; i++) {
+		    	$("#jqgrid3").jqGrid('editRow', ids[i], true);			    	
+		    }
+		    getTotals("#jqgrid3", "#subTotSum3", "#totSum3");
+		}
+	});		
+	
+	//돋보기버튼 클릭
+	$('#btn_search').click(function(){					
+		$(this).popupWindowInEvent({
+			centerScreen:1,
+			windowURL:'/portal/epo/studgdc/initFindUserPop.do', 
+			windowName:'findUserPop',
+			width:820, 
+			height:445
+		});
+	    return false;
+	});	
+	
+	$('#btn_query').click(function(){
+		var yosa = $("#yosa").val();		
+		var sklstfNo = $("#sklstfNo").val()
+		var url = "/portal/epo/studgdc/retrieveActiPldc.data?yosa="+yosa+"&sklstfNo="+sklstfNo+"&areCd=";
+		$("#jqgrid1").jqGrid("setGridParam", {url:url+'1'});
+		$("#jqgrid1").trigger("reloadGrid");		
+		
+		$("#jqgrid2").jqGrid("setGridParam", {url:url+'2'});
+		$("#jqgrid2").trigger("reloadGrid");
+				
+		$("#jqgrid3").jqGrid("setGridParam", {url:url+'3'});
+		$("#jqgrid3").trigger("reloadGrid");		
+		
+		$.ajax({
+			type: 'POST',
+			url: "/portal/epo/studgdc/retrieveUserInfo.data?yosa="+yosa+"&sklstfNo="+sklstfNo,
+			data: 'gridData=',
+			dataType: "json",
+			success : function(data) {
+				
+				$('.ui-section-contents #deptNm').val(data.userInfo.deptNm);
+				$('.ui-section-contents #clsfNm').val(data.userInfo.clsfNm);
+				$('.ui-section-contents #sklstfNm').val(data.userInfo.sklstfNm);					
+				$('.ui-section-contents #schulTelNo').val(data.userInfo.tel); //replace시 오류 발생할 때 처리
+				$('.ui-section-contents #mblphNo').val(data.userInfo.mp);
+			}
+		});
+	});
+	
+	//제출버튼 클릭
+	$('#btn_submit').click(function(){
+		
+		$.knouDialog.confirm('알림','활동계획서를 제출하시겠습니까?',function(isTrue) {
+			if(isTrue){
+				var yosa = $("#yosa").val();		
+				var sklstfNo = $("#sklstfNo").val();
+				var areCd = Number(selectedTab)+1;
+				var gridData = new Array();
+				var len = 0;
+				var grdId = "#jqgrid"+(selectedTab+1);
+				
+				var gr = $(grdId).jqGrid('getGridParam','selarrrow');
+				if (gr.length > 0) {
+					for (var i = 0; i < gr.length; i++) {
+						if(gr[i] == '0') continue;
+						$(grdId).jqGrid('saveRow', gr[i], false,'clientArray');
+						var ret = $(grdId).jqGrid('getRowData', gr[i]);							
+						gridData[len] = getObject(ret.flag, ret.yosa, areCd, ret.bspsCd, ret.ct, ret.sc, sklstfNo);
+						len++;
+					}
+				} else {
+					$("#msgBox").text('<spring:message code="TE116"/>');
+					$.knouDialog.alert('알림','<spring:message code="TE116"/>');
+					return false;
+				}
+				var gridDataJSON = JSON.stringify(gridData);
+				$.ajax({
+					type: 'POST',
+					url: "/portal/epo/studgdc/submitActiPldc.data?yosa="+yosa+"&sklstfNo="+sklstfNo+"&areCd="+areCd,
+					data: 'gridData='+gridDataJSON,
+					dataType: "json",
+					success : function(data) {
+						if(data.result.result == 'true'){
+							$.knouDialog.alert('알림','<spring:message code="10004"/>');   
+							$("#msgBox").text('<spring:message code="10004"/>');								
+						}else{
+							$.knouDialog.alert('알림',data.result.resultMessage);								
+						}
+						$(grdId).trigger('reloadGrid');
+					}
+				});
+			}				
+		});
+		return false;       
+	});		
+	
+	
+	//최신 인사 데이터 조회
+	$('#btn_chng').click(function(){
+		$('.ui-section-contents #schulTelNo').val(''); //replace시 오류 발생할 때 처리
+		$('.ui-section-contents #mblphNo').val('');			
+		$.ajax({
+			  type: 'POST',
+			  url: "/portal/epo/studgdc/retrieveRenewUserInfo.data?sklstfNo="+$("#sklstfNo").val(),
+			  data: 'gridData=',
+			  dataType: "json",
+			  success : function(data) {
+					//$.knouDialog.alert('알림','조회가 완료되었습니다. 변경사항이 있으신 분은 저장을 눌러주세요');						 
+					$('.ui-section-contents #deptNm').val(data.userInfo.deptNm);
+					$('.ui-section-contents #clsfNm').val(data.userInfo.clsfNm);
+					$('.ui-section-contents #sklstfNm').val(data.userInfo.sklstfNm);					
+					$('.ui-section-contents #schulTelNo').val(data.userInfo.tel.replace(/-/gi, "")); //replace시 오류 발생할 때 처리
+					$('.ui-section-contents #mblphNo').val(data.userInfo.mp.replace(/-/gi, ""));						
+			  }  
+		});
+	});
+	//대상자 정보 업데이트
+	$('#btn_save').click(function(){
+		$.knouDialog.confirm('알림','변경된 개인정보를 저장하시겠습니까?',function(isTrue) {
+			var yosa = $("#yosa").val();
+			var sklstfNo = $("#sklstfNo").val(); 
+			var tel = $("#schulTelNo").val().replace(/-/gi, "");
+			var mp = $("#mblphNo").val().replace(/-/gi, "");
+			
+			$.ajax({
+				type: 'POST',
+				url: "/portal/epo/studgdc/modifyRenewUserInfo.data?yosa="+yosa+"&sklstfNo="+sklstfNo+"&tel="+tel+"&mp="+mp,
+				data: 'gridData=',
+				dataType: "json",
+				success : function(data) {
+					if(data.result == true){
+						$.knouDialog.alert('알림','수정되었습니다');
+					}else{
+						$.knouDialog.alert('알림',data.resultMsg);  
+					}
+				}
+			});
+		});
+	} );
+	
+	//최초에 데이터 조회
+	$('#btn_query').click();
+	//관리자가 아니면 사용자 조회 필드와 버튼 숨기기
+	authCheck();
+});
+	
+	
+</script>
+<body class="main">
+	<div id="stage">
+			<!-- Header -->
+		<div id="header">
+			<h1 class="title">활동계획서</h1>
+			<knou:location menuId="309304"/>
+			<div class="query">				
+				<table cellpadding="0" cellspacing="0"  summary="table infomation" class="query-table">
+					<tbody>
+						<tr>
+							<th width="50">
+								<span class="text">학년도</span>
+							</th>
+							<th style="background-color:white;">
+								<span class="field">
+									<input type="text" name="yosa" id="yosa" maxlength="4" size="6" value='2018'/>
+								</span>
+							</th>
+							<th width="50" class='authCheck'>
+								<span class="text">성명</span>
+							</th>
+							<th style="background-color:white;"  class='authCheck'>
+								<span class="field">
+									<input type="text" name="sklstfNo" id="sklstfNo" title="사번" alt="사번" value="" />
+									<input type="image" id="btn_search" title="조회" alt="조회" src="/images/core/btn/btn-search.gif" />
+									<input type="text" name="sklstfNm" id="sklstfNm" value="" title="성명" alt="성명"/>
+									<input type="hidden" name="deptCode" id="deptCode" value="" title="부서코드" alt="부서코드"/>
+									<input type="hidden" name="deptNm" id="deptNm" value="" title="부서명" alt="부서명"/>
+								</span>
+							</th>									
+							<td class="action">
+								<span class="button">
+									<input type="image" id="btn_query" title="조회" alt="조회" src="/images/core/btn/btn-query.gif" />
+								</span>
+							</td>
+						</tr>
+					</tbody>    					
+				</table>										
+			</div>
+		</div>
+	
+		<!-- Contents Container -->
+		<div id="container">
+			<div class="ui-section">	
+				<div class="ui-section-header">
+					<h2 class="title">개인신상정보</h2>					
+					<ul class="action">
+						<li>
+							<span class="button"><input type="image" id="btn_chng" name="btn_chng" alt="수정" title="수정" src="/images/core/btn/btn-chng.gif" /></span>
+						</li>	
+						<li>
+							<span class="button"><input type="image" id="btn_save" name="btn_save" alt="저장" title="저장" src="/images/core/btn/btn-save.gif" /></span>
+						</li>						
+					</ul>					
+				</div>		
+				<div class="ui-section-contents">	
+					<div class="query">
+						<table cellpadding="0" cellspacing="0" summary="table infomation" class="query-table">
+							<tbody>					
+								<tr>
+			                       	<th style="text-align:center">소속</th>
+									<th style="text-align:center">직급</th>
+									<th style="text-align:center">성명</th>
+									<th rowspan="2" style="text-align:center">연락처</th>
+									<th style="text-align:center">교내</th>
+									<th style="background-color:white; font-weight:normal; text-align:center">
+										<input type="text" name="schulTelNo" id="schulTelNo" value=<c:out value='${userInfo.tel}'/> />
+										<%-- <c:out value='${powTlno}'/> --%>
+									</th>
+								</tr>
+								<tr>
+			                       	<th style="background-color:white; font-weight:normal; text-align:center">
+			                       		<input type="text" name="deptNm" id="deptNm" disabled="disabled" value=<c:out value='${userInfo.deptNm}'/> />
+										<%-- <c:out value='${blngNm}'/> --%>
+									</th>
+									<th style="background-color:white; font-weight:normal; text-align:center">
+										<input type="text" name="clsfNm" id="clsfNm" disabled="disabled" value=<c:out value='${userInfo.clsfNm}'/> />
+										<%-- <c:out value='${psclNm}'/>	 --%>								
+									</th>
+									<th style="background-color:white; font-weight:normal; text-align:center">
+										<input type="text" name="sklstfNm" id="sklstfNm" disabled="disabled" value=<c:out value='${userInfo.sklstfNm}'/> />
+										<%-- <c:out value='${pnn}'/>	 --%>						
+									</th>
+									<th style="text-align:center">핸드폰</th>							
+									<th style="background-color:white; font-weight:normal; text-align:center">
+										<input type="text" name="mblphNo" id="mblphNo"  value=<c:out value='${userInfo.mp}'/> />
+										<%-- <c:out value='${hpno}'/>	 --%>							
+									</th>
+								</tr>	
+							</tbody>				
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="ui-section">			
+				<div class="ui-section-header">
+					<h2 class="title">활동계획서</h2>					
+					<ul class="action">
+						<li>
+							<span class="button"><input type="image" id="btn_submit" name="btn_submit" alt="제출" title="제출" src="/images/core/btn/btn-subm.gif" /></span>
+						</li>	
+						<li>
+							<span class="button"><input type="image" id="btn_print" name="btn_print" alt="출력" title="출력" src="/images/core/btn/btn-prt.gif" /></span>
+						</li>						
+					</ul>					
+				</div>					
+				<div class="ui-section-content">
+					<div id="tabs">        			     	        		
+						<ul>
+							<li>
+								<a href="#tabs-1">교육영역</a>
+							</li>
+							<li>
+								<a href="#tabs-2">연구영역</a>
+							</li>
+							<li>
+								<a href="#tabs-3">학생지도영역</a>
+							</li>
+						</ul>
+						<ul class="infomation">
+			         		<li class="f_right">※ 해당란에 √표 하시오.</li>           				           				
+			         	</ul>
+			         	<div id="tabs-1">
+			         		<div class="query">								           		
+								<table id = "jqgrid1" cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table">										
+								</table>
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="query-table" style="width:720px;">
+									<tbody>					
+										<tr>
+			                       			<th style="text-align:center; width:640px;">선택영역합계</th>
+			                       			<td style="text-align:center; background-color:white; width:60px;">
+												<span class="field" id="subTotSum1">																			
+												</span>
+											</td>
+										</tr>
+										<tr>  
+			                       			<th style="text-align:center; width:640px;">교육영역합계</th>
+			                       			<td style="text-align:center; background-color:white; width:60px;">
+												<span class="field" id ="totSum1" >																									
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>							
+							</div>
+						</div>
+						<div id="tabs-2">
+							<div class="query">								
+			           			<table id = "jqgrid2" cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table">										
+								</table>
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="query-table" style="width:720px;">
+									<tbody>					
+										<tr>
+			                       			<th style="text-align:center; width:640px;">선택영역합계</th>
+			                       			<td style="text-align:center; background-color:white; width:60px;">
+												<span class="field" id="subTotSum2">																			
+												</span>
+											</td>
+										</tr>
+										<tr>  
+			                       			<th style="text-align:center; width:640px;">연구영역합계</th>
+			                       			<td style="text-align:center; background-color:white; width:60px;">
+												<span class="field" id ="totSum2" >																									
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>	
+			           		</div>							
+						</div>
+						<div id="tabs-3">
+							<div class="query">								
+								<table id = "jqgrid3" cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table">										
+								</table>
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="query-table" style="width:720px;">
+									<tbody>					
+										<tr>
+			                       			<th style="text-align:center; width:640px;">선택영역합계</th>
+			                       			<td style="background-color:white; width:60px;">
+												<span class="field" id="subTotSum3">																			
+												</span>
+											</td>
+										</tr>
+										<tr>  
+			                       			<th style="text-align:center; width:640px;">학생지도영역합계</th>
+			                       			<td style="background-color:white; width:60px;">
+												<span class="field" id ="totSum3" >																									
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>	
+							</div>
+						</div>										
+				</div>								
+			</div>			
+		</div>		
+		<div id="footer"></div>		
+	</div>
+</body>

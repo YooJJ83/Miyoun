@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+.login-box {
+    width: 402px;
+    margin: 0 auto;
+    padding:100px 0;
+}
+
+.login-box .type-selector {
+    border-bottom:2px solid #009ec4;
+    height:42px;
+}
+
+.login-box .type-selector label {
+    display: block;
+    width: 50%;
+    float: left;
+    cursor: pointer;
+    position: relative;
+}
+
+.login-box .type-selector label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity:0;
+}
+
+.login-box .type-selector label span {
+    display: block;
+    height:42px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid #d5d5d5;
+    background: #fafafa;
+    border-bottom:0;
+    text-align: center;
+    padding-top:13px;
+    font-size:16px;
+    position: relative;
+
+}
+
+.login-box .type-selector label input:checked+span {
+    border-color: #009ec4;
+    border-width:2px;
+    color: #009ec4;
+    background: #fff;
+    height:44px;
+    padding-top:12px;
+}
+
+.login-box .form-group input {
+    height:50px;
+    font-size:16px;
+}
+
+.login-box .btns .btn {
+    height:50px;
+    line-height:48px;
+}
+.login-box .extra-btns {
+    padding:25px 0;
+    border-top:1px solid #d5d5d5;
+
+}
+
+.login-box .tabs .tab-contents {
+    padding:0;
+}

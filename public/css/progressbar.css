@@ -1,0 +1,97 @@
+.progress-bar {
+    display: block;
+    background: #ededed;
+    height:8px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.progress-bar.progress-bar-lg {
+    height:12px;
+}
+
+.progress-bar.progress-bar-sm {
+    height: 6px;
+}
+
+
+.progress-bar.progress-bar-xs {
+    height: 4px;
+}
+
+.progress-bar .per {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #bebebe;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+
+.progress-bar.progress-bar-blue .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#85d3e6+0,029fc5+98 */
+    background: #85d3e6; /* Old browsers */
+    background: -moz-linear-gradient(left, #85d3e6 0%, #029fc5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #85d3e6 0%,#029fc5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #85d3e6 0%,#029fc5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85d3e6', endColorstr='#029fc5',GradientType=1 ); /* IE6-9 */
+}
+
+
+.progress-bar.progress-bar-grey .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cacaca+0,979797+100 */
+    background: #cacaca; /* Old browsers */
+    background: -moz-linear-gradient(left, #cacaca 0%, #979797 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #cacaca 0%,#979797 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #cacaca 0%,#979797 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cacaca', endColorstr='#979797',GradientType=1 ); /* IE6-9 */
+}
+
+
+.progress-bar.progress-bar-navy .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#85d3e6+0,029fc5+98 */
+    background: #94b8d7; /* Old browsers */
+    background: -moz-linear-gradient(left, #94b8d7 0%, #94b8d7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #94b8d7 0%,#94b8d7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #94b8d7 0%,#94b8d7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94b8d7', endColorstr='#94b8d7',GradientType=1 ); /* IE6-9 */
+}
+
+
+.progress-bar.progress-bar-green .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#85d3e6+0,029fc5+98 */
+    background: #7bd2ca; /* Old browsers */
+    background: -moz-linear-gradient(left, #7bd2ca 0%, #7bd2ca 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #7bd2ca 0%,#7bd2ca 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #7bd2ca 0%,#7bd2ca 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7bd2ca', endColorstr='#7bd2ca',GradientType=1 ); /* IE6-9 */
+}
+
+
+.progress-bar.progress-bar-purple .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#85d3e6+0,029fc5+98 */
+    background: #a49dd0; /* Old browsers */
+    background: -moz-linear-gradient(left, #a49dd0 0%, #a49dd0 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #a49dd0 0%,#a49dd0 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #a49dd0 0%,#a49dd0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a49dd0', endColorstr='#a49dd0',GradientType=1 ); /* IE6-9 */
+}
+
+.progress-bar.progress-bar-week-grey .per {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#85d3e6+0,029fc5+98 */
+    background: #cfcfcf; /* Old browsers */
+    background: -moz-linear-gradient(left, #cfcfcf 0%, #cfcfcf 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #cfcfcf 0%,#cfcfcf 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #cfcfcf 0%,#cfcfcf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#cfcfcf',GradientType=1 ); /* IE6-9 */
+}
+
+.progress-bar.progress-bar-solid-sky .per {
+    background: #94b8d7;
+}

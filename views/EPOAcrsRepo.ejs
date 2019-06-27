@@ -1,0 +1,449 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="knou" uri="/WEB-INF/tld/knou.tld"%>
+<%@ include file="/WEB-INF/view/knou/core/component/jqGrid.jsp"%>
+<%@ include file="/WEB-INF/view/knou/core/component/jsTree.jsp"%>
+<%--
+ * 최초작성자 : 유재준
+ * 최초작성일 : 2018.09.27.
+ * 최종변경일 : 2018.
+ * 목적 : 교육연구학생지도 실적보고서 입력
+ * 저작권 : 한국방송통신대학교
+--%> 
+<script type="text/javascript">
+
+	function acrsRepoSubm(bspsNo, count, score, rschSbjtNm) {
+		this.bspsNo = bspsNo;
+		this.count = count;		
+		this.score = score;	
+		this.rschSbjtNm = rschSbjtNm;
+	}
+	 
+	function getObject(bspsNo, count, score, rschSbjtNm) {
+		return new acrsRepoSubm(bspsNo, count, score, rschSbjtNm);
+	}	
+	
+	$( function() {
+		
+		var selectedTab = 0;
+		
+		$('#tabs').tabs({
+			show : function(event, ui){					
+				selectedTab = ui.index;
+			}
+		});
+		
+		$("#btn_submit").click(function(){			
+			
+			$.knouDialog.confirm('알림','<spring:message code="10003"/>',function(isTrue) {
+				if(isTrue){
+					var sendData = [];
+					var checkbox;
+					
+					if(selectedTab == "0"){
+						checkbox= $("#grid1 input[name=bspsNm]:checked");
+					}else if(selectedTab == "1"){
+						checkbox= $("#grid2 input[name=bspsNm]:checked");
+					}else{
+						checkbox= $("#grid3 input[name=bspsNm]:checked");
+					}
+					
+					if(checkbox.length == 0 ){
+						$.knouDialog.alert('알림',"입력한 값이 없어 실적보고서를 제출할 수 없습니다.");
+						return false;
+					}					
+					
+					checkbox.each(function(i){
+						var tr = checkbox.parent().parent().eq(i);	//체크된 행의 row정보 찾기
+						var td = tr.children();						//체크된 행의 
+						var span = td.children();
+						var input = span.children();
+						
+						var bspsNo = td.eq(1).html();				//체크된 행의 지표번호
+						var count = input.eq(0).val();				//체크된 행의 횟수 	
+						var score = input.eq(1).val() 				//체크된 행의 점수
+						var rschSbjtNm = "";
+						var rschSbjtNm = "";
+						if(bspsNo == '2001001'){
+							rschSbjtNm = $("#rschSbjtNm").val();							
+						}
+						
+						sendData.push(getObject(bspsNo, count, score,rschSbjtNm));				 
+					});	
+					var gridDataJSON = JSON.stringify(sendData);
+					var bspsNo = $("#bspsNo").val();					
+					$.ajax({
+						  type: 'POST',
+						  url: "/portal/epo/studgdc/submitStudGdc.data?bspsNo="+Number(selectedTab+1)+"&studgdcType=acrsRepo",
+						  data: 'gridData='+gridDataJSON,
+						  dataType: "json",
+						  success : function(data) {
+								$.knouDialog.alert('알림','<spring:message code="10004"/>');  //저장되었습니다.   
+								$("#msgBox").text('<spring:message code="10004"/>');
+								jQuery("#jqgrid").trigger('reloadGrid');  
+						  }
+					});
+				}
+			});   
+		});	
+		
+		
+		$.fn.rowspan = function(colIdx, isStats) {      
+		    return this.each(function(){    
+		        var that;    
+		        $('tr', this).each(function(row) {     
+		            $('th:eq('+colIdx+')', this).each(function(col) {		            	              
+		                if ($(this).html() == $(that).html()
+		                    && (!isStats
+		                            || isStats && $(this).prev().html() == $(that).prev().html()
+		                            )
+		                    ) {           
+		                    rowspan = $(that).attr("rowspan") || 1;
+		                    rowspan = Number(rowspan)+1;
+		                    $(that).attr("rowspan",rowspan);
+		                    $(this).hide();		                     
+		                } else {           
+		                    that = this;       
+		                }		                 
+		                // set the that if not already set
+		                that = (that == null) ? this : that;     
+		            });    
+		        });   
+		    }); 
+		};
+		
+		$('#grid1').rowspan(0);
+		$('#grid2').rowspan(0);
+		$('#grid3').rowspan(0);
+	});
+	
+	
+</script>
+<body class="main">
+	<div id="stage">
+			<!-- Header -->
+		<div id="header">
+			<h1 class="title">실적보고서</h1>
+			<%-- <knou:location menuId="309304"/> --%>
+			<div class="query">	
+				<form>			
+					<table cellpadding="0" cellspacing="0"  summary="table infomation" class="query-table">
+						<tbody>
+							<tr>
+								<th width="50">
+									<span class="text">학년도</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<select id="yosa" name="yosa" class="selectbox" title="학년도">	
+										  <option value="2019" <c:if test="${yosa == 2019}">selected</c:if>>2019</option>
+										  <option value="2018" <c:if test="${yosa == 2018}">selected</c:if>>2018</option>										  										  						  
+										</select>										
+									</span>
+								</th>
+								<th width="50">
+									<span class="text">성명</span>
+								</th>
+								<th style="background-color:white;">
+									<span class="field">
+										<input type="text" name="userTpId" id="userTpId" title="사번" alt="사번" value="" />
+										<input type="image" id="btn_search" title="조회" alt="조회" src="/images/core/btn/btn-search.gif" />
+										<input type="text" name="pnn" id="pnn" value="" title="성명" alt="성명"/>
+									</span>
+								</th>	
+								<td>
+									<span class="field">
+										<input type="hidden" name="studgdcType" id="studgdcType" value="actiPldc"/>
+									</span>
+								</td>																
+								<td class="action">
+									<span class="button">
+										<input type="image" id="btn_search" title="조회" alt="조회" src="/images/core/btn/btn-query.gif" />
+									</span>
+								</td>								
+							</tr>
+						</tbody>
+					</table>	
+				</form>							
+			</div>
+		</div>
+	
+		<!-- Contents Container -->
+		<div id="container">
+			<div class="query">				
+				<table cellpadding="0" cellspacing="0" summary="table infomation" class="query-table">
+					<tbody>					
+						<tr>
+	                       	<th style="text-align:center">소속</th>
+							<th style="text-align:center">직급</th>
+							<th style="text-align:center">성명</th>
+							<th rowspan="2" style="text-align:center">연락처</th>
+							<th style="text-align:center">교내</th>
+							<th style="background-color:white; font-weight:normal; text-align:center">
+								<input type="text" name="powTlno" id="powTlno"  value=<c:out value='${powTlno}'/> />
+								<%-- <c:out value='${powTlno}'/> --%>
+							</th>
+						</tr>
+						<tr>
+	                       	<th style="background-color:white; font-weight:normal; text-align:center">
+	                       		<input type="text" name="blngNm" id="blngNm"  value=<c:out value='${blngNm}'/> />
+								<%-- <c:out value='${blngNm}'/> --%>
+							</th>
+							<th style="background-color:white; font-weight:normal; text-align:center">
+								<input type="text" name="psclNm" id="psclNm" value=<c:out value='${psclNm}'/> />
+								<%-- <c:out value='${psclNm}'/>	 --%>								
+							</th>
+							<th style="background-color:white; font-weight:normal; text-align:center">
+								<input type="text" name="pnn" id="pnn"  value=<c:out value='${pnn}'/> />
+								<%-- <c:out value='${pnn}'/>	 --%>						
+							</th>
+							<th style="text-align:center">핸드폰</th>							
+							<th style="background-color:white; font-weight:normal; text-align:center">
+								<input type="text" name="hpno" id="hpno"  value=<c:out value='${hpno}'/> />
+								<%-- <c:out value='${hpno}'/>	 --%>							
+							</th>
+						</tr>	
+					</tbody>				
+				</table>
+			</div>
+			<div class="ui-section">
+				<div class="ui-section-header">
+					<h2 class="title">실적보고서</h2>					
+					<ul class="action">
+						<li>
+							<span class="button"><input type="image" id="btn_submit" name="btn_submit" alt="출력" title="출력" src="/images/core/btn/btn-subm.gif" /></span>
+						</li>	
+						<li>
+							<span class="button"><input type="image" id="btn_print" name="btn_print" alt="출력" title="출력" src="/images/core/btn/btn-prt.gif" /></span>
+						</li>					
+					</ul>					
+				</div>				
+				<div class="ui-section-content">
+					<div id="tabs">        			     	        		
+						<ul>
+							<li>
+								<a href="#tabs-1">교육영역</a>
+							</li>
+							<li>
+								<a href="#tabs-2">연구영역</a>
+							</li>
+							<li>
+								<a href="#tabs-3">학생지도영역</a>
+							</li>
+						</ul>
+				
+						<ul class="infomation">
+			         		<li class="f_right">※ 해당란에 √표 하시오.</li>           				           				
+			         	</ul>
+			         	<div id="tabs-1">
+							<div class="query">	
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table"  id="grid1">
+									<tbody name='dataBody'>
+										<tr>
+											<th style="text-align:center" width="60">영역</th>
+											<th style="text-align:center">지표</th>
+											<th style="text-align:center" width="50">회(건)</th>
+											<th style="text-align:center">배점 및 주요활동</th>
+											<th style="text-align:center" width="50">점수</th>
+										</tr>							
+										<c:forEach items="${eduRows}" var='bspsData'>
+										<tr>							
+											<th style="text-align:center">${bspsData.hgrkBspsNm}</th>
+											<td name="bspsNo" style="display:none;">${bspsData.bspsNo}</td>
+			                                <td>
+			                                	<input type="checkbox" name="bspsNm" class="checkbox" alt='${bspsData.bspsNm}' title="${bspsData.bspsNm}"
+			                                		<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+														disabled="disabled"
+													</c:if>
+			                                	/>${bspsData.bspsNm}
+			                                </td>
+			                                <td>
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"									
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>
+													/>
+												</span>
+											</td>
+			                                <td>${bspsData.bspsAlltScSn}</td>
+			                                <td width="50">
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"																				
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>											
+													/>
+												</span>
+											</td>
+										</tr>        
+			                            </c:forEach>							
+										<tr>
+											<th></th>
+											<td colspan="3"  style="text-align:center">선택지표 소계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="mSum" id ="mSum" maxlength="3" width="95%" disabled="disabled"/>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"  style="text-align:center" name="sumTitle">교육영역 합계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="sum" id='sum' maxlength="3" width="95%" disabled="disabled"/>
+												</span>
+											</td>
+										</tr>																		
+									</tbody>				
+								</table>
+							</div>
+						</div>
+						<div id="tabs-2">
+							<div class="query">	
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table"  id="grid2">
+									<tbody name='dataBody'>
+										<tr>
+											<th style="text-align:center" width="60">영역</th>
+											<th style="text-align:center">지표</th>
+											<th style="text-align:center" width="50">회(건)</th>
+											<th style="text-align:center">배점 및 주요활동</th>
+											<th style="text-align:center" width="50">점수</th>
+										</tr>							
+										<c:forEach items="${rschRows}" var='bspsData'>
+										<tr>							
+											<th style="text-align:center">${bspsData.hgrkBspsNm}</th>
+											<td name="bspsNo" style="display:none;">${bspsData.bspsNo}</td>
+			                                <td>
+			                                	<input type="checkbox" name="bspsNm" class="checkbox" alt='${bspsData.bspsNm}' title="${bspsData.bspsNm}"
+			                                		<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+														disabled="disabled"
+													</c:if>
+			                                	/>${bspsData.bspsNm}
+			                                </td>
+			                                <td>
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"									
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>
+													/>
+												</span>
+											</td>
+			                                <td>${bspsData.bspsAlltScSn}</td>
+			                                <td width="50">
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"																				
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>											
+													/>
+												</span>
+											</td>
+										</tr>
+										<c:if test="${bspsData.bspsNo eq '2001001'}">											
+										    <tr>
+										    	<th style="text-align:center">${bspsData.hgrkBspsNm}</th>
+												<td name="bspsNo" style="display:none;">${bspsData.bspsNo}</td>										    	
+										    	<td colspan="4">
+													<span class="field">
+														연구과제명 : <input type="text" name="rschSbjtNm" id="rschSbjtNm" maxlength="100" size="80"/>
+													</span>
+												</td>
+										    </tr>
+										</c:if>	        
+			                            </c:forEach>							
+										<tr>
+											<th></th>
+											<td colspan="3"  style="text-align:center">선택지표 소계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="mSum" id ="mSum" maxlength="3" width="95%"  disabled="disabled"/>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"  style="text-align:center" name="sumTitle">연구영역 합계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="sum" id='sum' maxlength="3" width="95%"  disabled="disabled"/>
+												</span>
+											</td>
+										</tr>																		
+									</tbody>				
+								</table>
+							</div>
+						</div>
+						<div id="tabs-3">
+							<div class="query">	
+								<table cellpadding="0" cellspacing="0" summary="table infomation" class="editor-table"  id="grid3">
+									<tbody name='dataBody'>
+										<tr>
+											<th style="text-align:center" width="60">영역</th>
+											<th style="text-align:center">지표</th>
+											<th style="text-align:center" width="50">회(건)</th>
+											<th style="text-align:center">배점 및 주요활동</th>
+											<th style="text-align:center" width="50">점수</th>
+										</tr>							
+										<c:forEach items="${stGdcrows}" var='bspsData'>
+										<tr>							
+											<th style="text-align:center">${bspsData.hgrkBspsNm}</th>
+											<td name="bspsNo" style="display:none;">${bspsData.bspsNo}</td>
+			                                <td>
+			                                	<input type="checkbox" name="bspsNm" class="checkbox" alt='${bspsData.bspsNm}' title="${bspsData.bspsNm}"
+			                                		<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+														disabled="disabled"
+													</c:if>
+			                                	/>${bspsData.bspsNm}
+			                                </td>
+			                                <td>
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"									
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>
+													/>
+												</span>
+											</td>
+			                                <td>${bspsData.bspsAlltScSn}</td>
+			                                <td width="50">
+												<span class="field">
+													<input type="number" name="score" maxlength="3" width="95%"	min="0"																				
+														<c:if test="${bspsTgtAreCd eq 'M' && bspsData.bspsTgtAreCd ne bspsTgtAreCd}">
+															 disabled="disabled"		
+														</c:if>											
+													/>
+												</span>
+											</td>
+										</tr>        
+			                            </c:forEach>							
+										<tr>
+											<th></th>
+											<td colspan="3"  style="text-align:center">선택지표 소계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="mSum" id ="mSum" maxlength="3" width="95%"  disabled="disabled"/>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4"  style="text-align:center" name="sumTitle">학생지도영역 합계</td>
+											<td>
+												<span class="field">
+													<input type="number" name="sum" id='sum' maxlength="3" width="95%"  disabled="disabled"/>
+												</span>
+											</td>
+										</tr>																		
+									</tbody>				
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>			
+		</div>		
+	</div>
+</body>

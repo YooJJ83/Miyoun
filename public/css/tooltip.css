@@ -1,0 +1,158 @@
+.tooltip {
+    display: inline-block;
+    font-size:0;
+    vertical-align: middle;
+    position: relative;
+}
+
+/*20180206접근성테스트 수정*/
+.tooltip .btn-toggle {
+    width:22px;
+    height:22px;
+    display: block;
+    background-image: url(../img/icons/tootip_mark.png);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: default;
+/*
+    border:1px solid #c1c1c1;
+    text-align: center;
+    line-height:20px;
+    color: #009ec4;
+    font-size:15px;
+    font-weight: 700;
+    -webkit-border-radius: 50% 50%;
+    -moz-border-radius: 50% 50%;
+    border-radius: 50% 50%;
+    font-family: Helvetica, sans-serif;
+*/
+}
+
+.tooltip .tooltip-box {
+    position: absolute;
+    bottom:100%;
+    font-size:14px;
+    margin-bottom:0px;
+    margin-left:-20px;
+    padding-bottom:14px;
+    width: 240px;
+    z-index: 9;
+    opacity:0;
+    visibility: hidden;
+    background: rgba(255,255,255,0);
+}
+
+/*
+.tooltip .btn-toggle:active+.tooltip-box,
+.tooltip .btn-toggle:focus+.tooltip-box,
+.tooltip .tooltip-box.active {
+    opacity:1;
+    visibility: visible;
+}
+*/
+
+.tooltip .tooltip-box:hover.active,
+.tooltip .btn-toggle:hover+.tooltip-box,
+.tooltip .tooltip-box:focus.active,
+.tooltip .btn-toggle:focus+.tooltip-box {
+    opacity:1;
+    visibility: visible; 
+}
+/*//20180206접근성테스트*/
+
+.tooltip .tooltip-box .inner {
+    background: #fff;
+    position: relative;
+    border:1px solid #44bfde;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    display: block;
+    padding:16px 20px;
+    line-height:1.4;
+}
+
+.tooltip .tooltip-box .inner:after {
+    content:'';
+    border:1px solid #44bfde;
+    background: #fff;
+    width: 10px;
+    height:10px;
+    border-top:0;
+    border-left:0;
+    position: absolute;
+    top:100%;
+    margin-top:-4px;
+    left:25px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.tooltip .tooltip-box .shadow {
+    position: absolute;
+    top:4px;
+    left:4px;
+    right:-4px;
+    bottom:10px;
+    background: #000;
+    opacity:.1;
+    position: absolute;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    display: block;
+    padding:20px;
+}
+
+.tooltip .tooltip-box .shadow:after {
+    content:'';
+    background: #000;
+    width: 10px;
+    height:10px;
+    border-top:0;
+    border-left:0;
+    position: absolute;
+    top:100%;
+    margin-top:-4px;
+    left:25px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.tooltip .tooltip-box .tooltip-title {
+    font-size:18px;
+    color: #009ec4;
+    display: block;
+    margin-bottom: 8px;
+
+}
+
+.tooltip .tooltip-box .tooltip-content {
+    display: block;
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.tooltip .tooltip-box .tooltip-link {
+    display: inline-block;
+    border-bottom:1px solid #999;
+    position: relative;
+}
+
+.tooltip .tooltip-box .tooltip-link:after {
+    content:'▶';
+    position: absolute;
+    left:100%;
+    top:3px;
+    margin-left:5px;
+    font-size:10px;
+    display: block;
+
+}

@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+body.modal-opened {
+    overflow: hidden;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    background-color: rgba(0,0,0,.65);
+    z-index: 9999;
+    opacity:0;
+    visibility: hidden;
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    -ms-transition: all 250ms ease-out;
+    -o-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal.active {
+    opacity:1;
+    visibility: visible;
+}
+
+
+
+.modal .modal-box {
+    width:710px;
+    min-height:100px;
+    margin:130px auto;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #fff;
+    border:1px solid #c0c0c0;
+    -webkit-box-shadow: 0 0 30px rgba(0,0,0,.5);
+    -moz-box-shadow:  0 0 30px rgba(0,0,0,.5);
+    box-shadow:  0 0 30px rgba(0,0,0,.5);
+}
+
+.modal .modal-box.modal-box-sm {
+    width:380px;
+}
+
+
+.modal .modal-box.modal-box-lg {
+    width:900px;
+}
+
+
+.modal-header {
+    position: relative;
+    padding:50px 30px 10px;
+}
+
+.modal-header .btn-close {
+    background: url(../img/icons/icon-x-dark.png) no-repeat;
+    width:14px;
+    height:14px;
+    display: block;
+    text-indent:-999em;
+    overflow: hidden;
+    position: absolute;
+    right:30px;
+    top:30px;
+}
+
+
+.modal-body {
+    padding:30px;
+}
+/*modal popup*/
+
+.modal#homePopupModal .modal-box {
+    background-color: transparent;
+    border:none;
+}
+.popup-content {
+    -webkit-border-radius: 8px 8px 0 0 ;
+    -moz-border-radius: 8px 8px 0 0 ;
+    border-radius: 8px 8px 0 0 ;
+    overflow: hidden;
+}
+
+.popup-content img {
+    display: block;
+    width: 100%;
+}
+
+.popup-footer {
+    background: #333333;
+    -webkit-border-radius: 0 0 8px 8px;
+    -moz-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
+    padding:15px;
+    font-size:16px;
+    color: #fff;
+    text-align: right;
+    overflow: hidden;
+}
+.popup-footer a {
+    color: #fff;
+}
+.popup-footer .split {
+    margin:0 8px;
+    opacity:.5;
+}
+
+.modal-box .btns .btn {
+    min-width: 90px;
+}
+
+.modal-box .btns.text-center .btn {
+    margin: 0 2px;
+}
+
+.modal .table-list {
+    max-height:400px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
